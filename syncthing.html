@@ -1,0 +1,793 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://image.neko7ina.com/base/favicon.png">
+  <link rel="icon" href="https://image.neko7ina.com/base/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="NeKo7inA">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="3 月份，Dropbox 悄悄「公布」了一项新改动：  从 2019 年 3 月开始，Basic 用户最多只能关联 3 台设备。 Plus 和 Professional 用户可以关联的设备数量没有限制。 Business 用户可以关联的设备数量没有限制，但 Advanced 和 Enterprise Dropbox Business 管理员能够限制其团队可以关联的设备数量。  对于我这种设备绝对不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="被逼无奈，用 Syncthing 打造自己的同步云盘">
+<meta property="og:url" content="https://neko7ina.com/syncthing.html">
+<meta property="og:site_name" content="七味茶盏">
+<meta property="og:description" content="3 月份，Dropbox 悄悄「公布」了一项新改动：  从 2019 年 3 月开始，Basic 用户最多只能关联 3 台设备。 Plus 和 Professional 用户可以关联的设备数量没有限制。 Business 用户可以关联的设备数量没有限制，但 Advanced 和 Enterprise Dropbox Business 管理员能够限制其团队可以关联的设备数量。  对于我这种设备绝对不">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.neko7ina.com/20190331/index.jpg">
+<meta property="article:published_time" content="2019-03-30T17:19:38.000Z">
+<meta property="article:modified_time" content="2026-03-15T08:04:17.032Z">
+<meta property="article:author" content="NeKo7inA">
+<meta property="article:tag" content="折腾">
+<meta property="article:tag" content="多平台">
+<meta property="article:tag" content="Syncthing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://image.neko7ina.com/20190331/index.jpg">
+  
+  
+  
+  <title>被逼无奈，用 Syncthing 打造自己的同步云盘 - 七味茶盏</title>
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/twitter-bootstrap/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/github-markdown-css/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/hint.css/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/fancybox/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="https://static.neko7ina.com/iconfont/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"neko7ina.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":77,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://image.neko7ina.com/base/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-XKLHJ9PV58"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-XKLHJ9PV58", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-XKLHJ9PV58');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 47vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>七味茶盏</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-clock-fill"></i>
+                <span>时间线</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/trophys/" target="_self">
+                <i class="iconfont2 icon-playstation-fill"></i>
+                <span>奖杯</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://image.neko7ina.com/base/index.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="被逼无奈，用 Syncthing 打造自己的同步云盘"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-03-31 01:19" pubdate>
+          2019 年 3 月 31 日 星期日 凌晨 1:19
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">被逼无奈，用 Syncthing 打造自己的同步云盘</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>3 月份，Dropbox 悄悄「公布」了一项新改动：</p>
+<blockquote>
+<p>从 2019 年 3 月开始，Basic 用户最多只能关联 3 台设备。</p>
+<p>Plus 和 Professional 用户可以关联的设备数量没有限制。</p>
+<p>Business 用户可以关联的设备数量没有限制，但 Advanced 和 Enterprise Dropbox Business 管理员能够限制其团队可以关联的设备数量。</p>
+</blockquote>
+<p>对于我这种设备绝对不止 3 台的人来说，这种改动无疑是逼着我去付费。</p>
+<p>Dropbox 的付费对我又不太友好，最低档也要 8 刀一个月，还得年付。</p>
+<p>虽然 Dropbox 特别好用，但是新改动对于我来说太致命，也让我不得不寻找一个新的解决方案了。</p>
+<span id="more"></span>
+
+<p><a target="_blank" rel="noopener" href="https://syncthing.net/">Syncthing</a> 是一款开源的同步工具，简单了解一下发现可以实现我的需求，于是就动了下手。</p>
+<div class="note note-info">
+            <p><strong>2022.12.07 更新</strong>：优化配置逻辑，让 Syncthing 可以自动更新。</p>
+          </div>
+
+<h1 id="安装与更新"><a href="#安装与更新" class="headerlink" title="安装与更新"></a>安装与更新</h1><h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><h3 id="安装-Syncthing"><a href="#安装-Syncthing" class="headerlink" title="安装 Syncthing"></a>安装 Syncthing</h3><p>本来考虑到家里有公网 IP，就直接 24 小时开家里的 PC，其他设备都以它为主进行同步。</p>
+<p>不过考虑再三，保险起见，还是在 VPS 上部署一个服务端。</p>
+<p>其实这个服务端本质上也是客户端，因为我的 VPS 系统是 Ubuntu 18.04 LTS，所以这个也可以视为 Linux 系统下的客户端使用指南。</p>
+<div class="note note-info">
+            <p><strong>&lt;2022.12.07 更新&gt;</strong></p><p>优化配置逻辑，让 Syncthing 可以自动更新。</p>
+          </div>
+
+<p>打开 <a target="_blank" rel="noopener" href="https://syncthing.net/">官网</a>，找到最新的 Linux 64 bit 版的客户端。</p>
+<p>如果以 root 用户启动 Syncthing 会被提示不建议在 root 用户下运行，所以在正式使用之前，先建立一个专门的用户。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adduser syncthing<br></code></pre></td></tr></table></figure>
+
+<p>按照引导将用户建立完成，切换到刚创建的用户 <code>syncthing</code> 将客户端下到 VPS 上，并解压出来，将其中的执行程序复制到用户目录下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://github.com/syncthing/syncthing/releases/download/v1.1.0/syncthing-linux-amd64-v1.1.0.tar.gz<br>tar -xzvf syncthing-linux-amd64-v1.1.0.tar.gz<br><span class="hljs-built_in">cd</span> syncthing-linux-amd64-v1.1.0<br><span class="hljs-built_in">cp</span> syncthing /home/syncthing/syncthing<br></code></pre></td></tr></table></figure>
+
+<p>运行一次 Syncthing，程序会将配置文件释放出来。</p>
+<p>停止运行程序，先编辑配置文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim /home/syncthing/.config/syncthing/config.xml<br></code></pre></td></tr></table></figure>
+
+<p>找到 <code>&lt;address&gt;</code> 这行，将 <code>127.0.0.1</code> 改为 <code>0.0.0.0</code>，这样就可以从公网访问 Web UI 了，保存退出。</p>
+<p>再次直接运行 Syncthing，然后在地址栏输入 <code>http://w.x.y.z:8384/</code> 进入 Syncthing 的 Web UI 管理界面，第一次访问时会提醒设置账号及密码，建议设置并重启 Syncthing。</p>
+<p>这时候 Syncthing 就已经可以开始正常使用了，如果使用了防火墙，在过程中对相应的规则进行放行。</p>
+<p>比如我使用的是 UFW，那么将执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">ufw allow syncthing<br>ufw allow syncthing-gui<br></code></pre></td></tr></table></figure>
+
+<h3 id="作为服务启动"><a href="#作为服务启动" class="headerlink" title="作为服务启动"></a>作为服务启动</h3><p>Syncthing 非常地贴心啊，在第一次启动时不止在用户的 <code>.config</code> 目录释放了配置文件及证书，也释放了 systemd 服务文件，可以直接启用。</p>
+<p>不过我为了偷懒，拿它的文件改了一下，指定了用户，这样在用 systemd 控制时可以少打点字母。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim /lib/systemd/system/syncthing.service<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[Unit]</span><br><span class="hljs-attr">Description</span>=Syncthing<br><span class="hljs-attr">Documentation</span>=man:syncthing(<span class="hljs-number">1</span>)<br><span class="hljs-attr">After</span>=network.target<br><br><span class="hljs-section">[Service]</span><br><span class="hljs-attr">User</span>=syncthing<br><span class="hljs-attr">ExecStart</span>=/home/syncthing/syncthing -<span class="hljs-literal">no</span>-browser -<span class="hljs-literal">no</span>-restart -logflags=<span class="hljs-number">0</span><br><span class="hljs-attr">Restart</span>=<span class="hljs-literal">on</span>-failure<br><span class="hljs-attr">SuccessExitStatus</span>=<span class="hljs-number">3</span> <span class="hljs-number">4</span><br><span class="hljs-attr">RestartForceExitStatus</span>=<span class="hljs-number">3</span> <span class="hljs-number">4</span><br><br><span class="hljs-comment"># Hardening</span><br><span class="hljs-attr">ProtectSystem</span>=full<br><span class="hljs-attr">PrivateTmp</span>=<span class="hljs-literal">true</span><br><span class="hljs-attr">SystemCallArchitectures</span>=native<br><span class="hljs-attr">MemoryDenyWriteExecute</span>=<span class="hljs-literal">true</span><br><span class="hljs-attr">NoNewPrivileges</span>=<span class="hljs-literal">true</span><br><br><span class="hljs-section">[Install]</span><br><span class="hljs-attr">WantedBy</span>=multi-user.target<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">systemctl <span class="hljs-built_in">enable</span> syncthing<br>systemctl start syncthing<br></code></pre></td></tr></table></figure>
+
+<h3 id="更新-Syncthing"><a href="#更新-Syncthing" class="headerlink" title="更新 Syncthing"></a>更新 Syncthing</h3><div class="note note-info">
+            <p><strong>2022.12.07 更新</strong>：现在已可以自动更新。</p>
+          </div>
+
+<p>下新版本的 Syncthing，关闭当前运行的程序，将可执行文件替换即可，操作如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://github.com/syncthing/syncthing/releases/download/v1.1.1/syncthing-linux-amd64-v1.1.1.tar.gz<br>tar zxvf syncthing-linux-amd64-v1.1.1.tar.gz<br><span class="hljs-built_in">cd</span> syncthing-linux-amd64-v1.1.1<br>systemctl stop syncthing<br><span class="hljs-built_in">cp</span> syncthing /usr/local/bin<br>systemctl start syncthing<br></code></pre></td></tr></table></figure>
+
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>Windows 平台下有个很好用的 GUI 客户端 <a target="_blank" rel="noopener" href="https://github.com/canton7/SyncTrayzor/releases/latest">SyncTrayzor</a>，基本上就是下载、安装、打开使用，开袋即食。</p>
+<p>GUI 客户端本身及 Syncthing 核心都会提示更新，按照提示操作即可。</p>
+<h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><p>没啥说的，<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.nutomic.syncthingandroid">官方客户端</a>。</p>
+<p>更新也是按照 Google Play 官方提示更新。</p>
+<h3 id="Synology"><a href="#Synology" class="headerlink" title="Synology"></a>Synology</h3><p>打开 <code>套件中心</code> - <code>设置</code> - <code>套件来源</code>，点击 <code>新增</code> 添加第三方来源 SynoCommunity，地址为 <a target="_blank" rel="noopener" href="http://packages.synocommunity.com/">http://packages.synocommunity.com/</a>，确定保存。</p>
+<p><img src="https://image.neko7ina.com/20190331/1.png" style="aspect-ratio: 1459 / 795;width:90%;max-width:1459px" srcset="https://image.neko7ina.com/20190331/1_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">添加来源</font></i></center>
+
+</br>
+
+<p>刷新套件中心会看到多出一个 <code>社群</code> 类别，点进去找到 Syncthing 安装即可。</p>
+<p><img src="https://image.neko7ina.com/20190331/2.png" style="aspect-ratio: 1456 / 794;width:90%;max-width:1456px" srcset="https://image.neko7ina.com/20190331/2_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">安装 Syncthing</font></i></center>
+
+</br>
+
+<p>这个客户端 Web GUI 默认监听 <code>0.0.0.0:8384</code>，可以直接访问群晖内网 IP 的 8384 端口而不需要更改任何设置。</p>
+<p>更新可以依赖套件中心（可能会慢），或 Web GUI 自动更新。</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>不论服务端还是客户端，使用逻辑都是同一套的 Web UI，服务端访问方式上面已说，本地客户端可以访问 <code>http://127.0.0.1:8384/</code>。</p>
+<p>当然，SyncTrayzor 之类的客户端自带界面。</p>
+<p><img src="https://image.neko7ina.com/20190331/3.png" style="aspect-ratio: 1805 / 1338;width:90%;max-width:1805px" srcset="https://image.neko7ina.com/20190331/3_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">Web GUI 界面</font></i></center>
+
+</br>
+
+<p>右上角 <code>操作</code> 中有个 <code>显示 ID</code>，点开可以看到 ID 和二维码，方便其他设备添加该设备，点击右下角的 <code>添加远程设备</code> 输入 ID 提交添加申请，被添加的设备通过后设备之间就联系上了。</p>
+<p>在用电脑添加服务端时，在 <code>共享</code> 选项卡中把 <code>作为中介</code> 勾上，这样其他设备在添加服务端后，会自动把与服务端联系的设备自动添加上。</p>
+<p><img src="https://image.neko7ina.com/20190331/4.png" style="aspect-ratio: 1241 / 632;width:90%;max-width:1241px" srcset="https://image.neko7ina.com/20190331/4_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">添加设备</font></i></center>
+
+</br>
+
+<p>设备添加完了，就该设置同步了。</p>
+<p>点击 <code>添加文件夹</code> 打开界面。</p>
+<p><img src="https://image.neko7ina.com/20190331/5.png" style="aspect-ratio: 1242 / 790;width:90%;max-width:1242px" srcset="https://image.neko7ina.com/20190331/5_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">添加文件夹</font></i></center>
+
+</br>
+
+<p>设置一下 <code>文件夹路径</code>，不要去 <code>动文件夹 ID</code>，<code>文件夹标签</code> 按自己的习惯填写。</p>
+<p>然后打开 <code>版本控制</code> 选项卡。</p>
+<p><img src="https://image.neko7ina.com/20190331/6.png" style="aspect-ratio: 1244 / 611;width:90%;max-width:1244px" srcset="https://image.neko7ina.com/20190331/6_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">版本控制</font></i></center>
+
+</br>
+
+<p>Syncthing 有一个强大的版本控制功能，合理设置能有效降低误操作带来的损失。</p>
+<p>对于一般使用者来说，<code>简易版本控制</code> 够用了，保留版本数量随自己喜好。</p>
+<p>实际使用中，效果是这样的：</p>
+<p><img src="https://image.neko7ina.com/20190331/7.png" style="aspect-ratio: 1447 / 1050;width:90%;max-width:1447px" srcset="https://image.neko7ina.com/20190331/7_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">恢复历史版本</font></i></center>
+
+</br>
+
+<p>这时再回到 <code>共享</code> 选项卡，把文件夹共享给要同步的设备，目标设备接受就算完成了。</p>
+<p>如果设备勾选了 <code>自动接受</code>，在共享勾上时就会自动接受并开始同步，但会在默认目录建立，所以如果对路径有比较强的规划，不推荐给设备勾选此选项。</p>
+<p>不过这里有个问题，Android 客户端接受之后会让用户设置文件夹属性，并指定位置，但 Web UI 界面下接受后就直接在默认目录按照 <code>文件夹标签</code> 建立文件夹，这个并不符合所有人的使用习惯，起码不符合我的。</p>
+<p>为了避免这个文件，我会在所有设备上先建立好要同步的文件夹，指定好路径，只要所有设备里同步文件夹的 <code>文件夹 ID</code> 一致，设置完后勾上共享就可以开始同步了。</p>
+<p>到这里，属于我自己的私人同步云盘就建立起来并正常开始工作了，使用方式和 Dropbox 并无太大区别，将要同步的内容丢到文件夹中即可。</p>
+<h1 id="微小的工作"><a href="#微小的工作" class="headerlink" title="微小的工作"></a>微小的工作</h1><h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><p>Web UI 的字体我总是看它不太爽，尤其是字母和数字对不齐真是要了我的老命。</p>
+<p><img src="https://image.neko7ina.com/20190331/8.png" style="aspect-ratio: 785 / 348;width:90%;max-width:785px" srcset="https://image.neko7ina.com/20190331/8_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">这字体可真让我难受</font></i></center>
+
+</br>
+
+<p>看了看好像是默认字体的锅，想了想还是没忍住把它给干了。</p>
+<p>使用类似 <a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne">Stylus</a> 之类的扩展，在里面添加一个新样式，写入如下内容：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">h4</span> &#123;<br>    <span class="hljs-attribute">font-family</span>: -apple-system, BlinkMacSystemFont, <span class="hljs-string">&quot;Segoe UI&quot;</span>, Roboto, <span class="hljs-string">&quot;Helvetica Neue&quot;</span>, Arial, <span class="hljs-string">&quot;Noto Sans&quot;</span>, sans-serif, <span class="hljs-string">&quot;Apple Color Emoji&quot;</span>, <span class="hljs-string">&quot;Segoe UI Emoji&quot;</span>, <span class="hljs-string">&quot;Segoe UI Symbol&quot;</span>, <span class="hljs-string">&quot;Noto Color Emoji&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后应用于本地及远程 Web UI 的地址即可，效果如下：</p>
+<p><img src="https://image.neko7ina.com/20190331/9.png" style="aspect-ratio: 785 / 349;width:90%;max-width:785px" srcset="https://image.neko7ina.com/20190331/9_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">对齐后就舒服了</font></i></center>
+
+
+
+<h2 id="eaDir-文件夹"><a href="#eaDir-文件夹" class="headerlink" title="@eaDir 文件夹"></a>@eaDir 文件夹</h2><p>DSM 会在含有图片的文件夹建立索引，@eaDir 文件夹就是为了实现这个功能而在目录自动添加的。</p>
+<p>但是对我来说，其他设备上看到这个挺烦的，还好 Syncthing 支持忽略模式，可以写一条规则避免将这个文件夹同步到别的设备上。</p>
+<p>点击要修改的文件夹，点击 <code>选项</code>，转到 <code>忽略模式</code> 选项卡，在下面正文部分添加一条：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs aspectj"><span class="hljs-meta">@eaDir</span><br></code></pre></td></tr></table></figure>
+
+<p>保存即可生效。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>这么多天使用下来，Syncthing 还是能满足我的使用要求的，并且相对于 Dropbox 来说，我有了一些更自由的选项。</p>
+<p>天下宴席，终有散时，Dropbox，我们后会有期，感谢这么些年来给我带来的美好体验。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%98%E8%85%BE/" class="category-chain-item">折腾</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8A%98%E8%85%BE/" class="print-no-link">#折腾</a>
+      
+        <a href="/tags/%E5%A4%9A%E5%B9%B3%E5%8F%B0/" class="print-no-link">#多平台</a>
+      
+        <a href="/tags/Syncthing/" class="print-no-link">#Syncthing</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/synology.html" title="Synology 的使用初体验">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Synology 的使用初体验</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/rime.html" title="我的输入法，我的 Rime">
+                        <span class="hidden-mobile">我的输入法，我的 Rime</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://static.neko7ina.com/twikoo/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://twikoo.neko7ina.com/","region":"ap-shanghai","path":"window.location.pathname","prismCdn":"https://static.neko7ina.com/prism"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      苏ICP备19071122号-1
+    </a>
+  </span>
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+
+<script  src="https://static.neko7ina.com/jquery/jquery.min.js" ></script>
+<script  src="https://static.neko7ina.com/twitter-bootstrap/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://static.neko7ina.com/typed.js/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/tocbot/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://static.neko7ina.com/clipboard.js/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/anchor-js/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/fancybox/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

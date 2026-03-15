@@ -1,0 +1,736 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://image.neko7ina.com/base/favicon.png">
+  <link rel="icon" href="https://image.neko7ina.com/base/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="NeKo7inA">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="从前端时间刚把 Twikoo 在服务器上自建，原因是因为腾讯云开发砍免费套餐。 现在腾讯云又对 CDN 动刀了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="迁移 Hexo 博客至服务器上">
+<meta property="og:url" content="https://neko7ina.com/3pYN3eKzM1dspc.html">
+<meta property="og:site_name" content="七味茶盏">
+<meta property="og:description" content="从前端时间刚把 Twikoo 在服务器上自建，原因是因为腾讯云开发砍免费套餐。 现在腾讯云又对 CDN 动刀了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.neko7ina.com/20220930/index.jpg">
+<meta property="article:published_time" content="2022-09-30T09:07:37.000Z">
+<meta property="article:modified_time" content="2026-03-15T08:04:17.032Z">
+<meta property="article:author" content="NeKo7inA">
+<meta property="article:tag" content="折腾">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://image.neko7ina.com/20220930/index.jpg">
+  
+  
+  
+  <title>迁移 Hexo 博客至服务器上 - 七味茶盏</title>
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/twitter-bootstrap/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/github-markdown-css/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/hint.css/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/fancybox/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="https://static.neko7ina.com/iconfont/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"neko7ina.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":77,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://image.neko7ina.com/base/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-XKLHJ9PV58"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-XKLHJ9PV58", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-XKLHJ9PV58');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 47vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>七味茶盏</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-clock-fill"></i>
+                <span>时间线</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/trophys/" target="_self">
+                <i class="iconfont2 icon-playstation-fill"></i>
+                <span>奖杯</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://image.neko7ina.com/base/index.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="迁移 Hexo 博客至服务器上"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-30 17:07" pubdate>
+          2022 年 9 月 30 日 星期五 下午 5:07
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">迁移 Hexo 博客至服务器上</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>从前端时间刚把 Twikoo 在服务器上自建，原因是因为腾讯云开发砍免费套餐。</p>
+<p>现在腾讯云又对 CDN 动刀了。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>尊敬的腾讯云用户，您好！</p>
+<p>您（账号 ID：*******，昵称：*******）当前享有的腾讯云CDN产品每月10G免费试用流量包，为了让您可根据实际的业务高峰期灵活领用，避免过期失效。从北京时间2022.9.28起，流量包发放方式将由原来的自动发放变更为手动领取，您可根据实际使用需求，在每月任意时间领取该流量包（例如：您可在当月20号领取流量包，次月1号再领取新流量包）。活动开始后，您可以通过下方链接前往领取或通过控制台内概览页内活动入口进入领取，感谢您的支持与理解！</p>
+</blockquote>
+<p>之前 CDN 每月免费 10 GB 都是自动发放，现在改成了手动领取，这还不是关键。</p>
+<p>关键是将之前承诺的免费套餐偷换概念成了优惠活动，并且指定了活动结束日期，那么后续的动作可想而知。</p>
+<p><img src="https://image.neko7ina.com/20220930/1.jpg" style="aspect-ratio: 721 / 191;width:90%;max-width:721px" srcset="https://image.neko7ina.com/20220930/1_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">「福利」</font></i></center>
+
+</br>
+
+<p>这每个月还要想着去领流量包也怪麻烦的，算了，这意思不就是让我们这些白嫖用户走人嘛。</p>
+<p>那我走就是了。</p>
+<div class="note note-info">
+            <p><strong>2022.12.06 更新</strong>：在 Nginx 配置中加入 404 页面的相关配置。</p>
+          </div>
+
+<h1 id="在服务器上部署博客"><a href="#在服务器上部署博客" class="headerlink" title="在服务器上部署博客"></a>在服务器上部署博客</h1><h2 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h2><h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>走了，那么博客就扔自己的服务器上吧。</p>
+<p>其实对于 Hexo 来说之前的使用工序都没变化，只是最后部署的时候变了一下。</p>
+<p>首先在服务器上新建一个 <code>git</code> 用户，按照引导建立完成后切换到该用户：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">adduser git<br>su git<br></code></pre></td></tr></table></figure>
+
+<p>切换用户后先别急，先回到自己的用户目录，然后建立一些文件夹，做一些简单的操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~<br><span class="hljs-built_in">mkdir</span> hexo<br><span class="hljs-built_in">mkdir</span> repos &amp;&amp; <span class="hljs-built_in">cd</span> repos<br>git init --bare hexo.git<br></code></pre></td></tr></table></figure>
+
+<p>配置一下 hook（在 <code>repos</code> 目录下）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim post-receive<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vim">#!/bin/<span class="hljs-keyword">sh</span><br>git --work-tree=/home/git/hexo --git-dir=/home/git/repos/hexo.git checkout -<span class="hljs-keyword">f</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> +x post-receive<br><span class="hljs-built_in">chown</span> -R git:git /home/git/repos/hexo.git<br></code></pre></td></tr></table></figure>
+
+<p>这样就算完成了。</p>
+<p>最后再配置一下 ssh 相关：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~<br><span class="hljs-built_in">mkdir</span> .ssh<br>vim ./.ssh/authorized_keys<br></code></pre></td></tr></table></figure>
+
+<p>将个人的公钥放进去，保存即可。</p>
+<p>那么在 <code>git</code> 用户上要做的事情就做完了，使用 <code>exit</code> 回到 <code>root</code> 用户还有点事情要收尾。</p>
+<p>更改 <code>git</code> 用户的默认 Shell：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim /etc/shells<br></code></pre></td></tr></table></figure>
+
+<p>找到以下内容（数字可能不同）：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">gi<span class="hljs-variable">t:x</span>:<span class="hljs-number">1003</span>:<span class="hljs-number">1003</span>:,,,:/home/git:/bin/bash<br></code></pre></td></tr></table></figure>
+
+<p>更改为：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">gi<span class="hljs-variable">t:x</span>:<span class="hljs-number">1003</span>:<span class="hljs-number">1003</span>:,,,:/home/git:/usr/bin/git-<span class="hljs-keyword">shell</span><br></code></pre></td></tr></table></figure>
+
+<p>保存退出。</p>
+<p>这时候再使用 <code>su</code> 切换用户就切不过去了。</p>
+<p>如果后期有其他设备利用 git 更新博客，可以直接用 <code>root</code> 用户来修改 <code>/home/git/.ssh/authorized_keys</code>。</p>
+<h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><div class="note note-info">
+            <p><strong>&lt;2022.12.06 更新&gt;</strong></p><p>加入 404 页面的相关配置。</p>
+          </div>
+
+<p>写个简单的 Nginx 配置文件就可以了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim /etc/nginx/conf.d/hexo.conf<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;<br>        <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;<br>        <span class="hljs-attribute">server_name</span> www.neko7ina.com;<br>        <span class="hljs-attribute">return</span> <span class="hljs-number">301</span> https://<span class="hljs-variable">$server_name</span><span class="hljs-variable">$request_uri</span>;<br>&#125;<br><br><span class="hljs-section">server</span> &#123;<br>        <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;<br>        <span class="hljs-attribute">server_name</span> neko7ina.com;<br>        <span class="hljs-attribute">return</span> <span class="hljs-number">301</span> https://www.neko7ina.com<span class="hljs-variable">$request_uri</span>;<br>&#125;<br><br><span class="hljs-section">server</span> &#123;<br>        <span class="hljs-attribute">listen</span> <span class="hljs-number">443</span>;<br>        <span class="hljs-attribute">server_name</span> neko7ina.com;<br>        <span class="hljs-attribute">return</span> <span class="hljs-number">301</span> https://www.neko7ina.com<span class="hljs-variable">$request_uri</span>;<br>&#125;<br><br><span class="hljs-section">server</span> &#123;<br>        <span class="hljs-attribute">listen</span> <span class="hljs-number">443</span>;<br>        <span class="hljs-attribute">server_name</span> www.neko7ina.com;<br><br>        <span class="hljs-attribute">ssl_certificate</span> /home/syncthing/ssl/cert.pem;<br>        <span class="hljs-attribute">ssl_certificate_key</span> /home/syncthing/ssl/key.pem;<br><br>        <span class="hljs-section">location</span> / &#123;<br>                <span class="hljs-attribute">root</span> /home/git/hexo;<br>                <span class="hljs-attribute">index</span> index.html;<br>        &#125;<br>    	<span class="hljs-attribute">error_page</span> <span class="hljs-number">404</span> /<span class="hljs-number">404</span>.html;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>证书的问题之前刚好解决了（看 <a href="/3pYN3eKySfPEgQ.html">这里</a>），这里直接用上就行了。</p>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p>客户端这边要做的就很简单了，只需要更改 Hexo 的配置文件 <code>_config.yml</code>，将其中 <code>deploy</code> 重新配置即可。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">deploy:</span><br><span class="hljs-comment">#  type: cos</span><br><span class="hljs-comment">#  secretId: *******</span><br><span class="hljs-comment">#  secretKey: *******</span><br><span class="hljs-comment">#  bucket: *******</span><br><span class="hljs-comment">#  region: ap-shanghai</span><br><span class="hljs-comment">#  pathPrefix: /</span><br><span class="hljs-comment">#  deleteInPathPrefix: false</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repository:</span><br>    <span class="hljs-string">git@&lt;your_server_ip&gt;:/home/git/repos/hexo.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br></code></pre></td></tr></table></figure>
+
+<p>如果没问题，使用 <code>hexo d</code> 就可以把博客部署上去了——什么，报错？我猜是没装 <code>hexo-deployer-git</code> 吧，还不赶紧装一个？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install hexo-deployer-git --save<br></code></pre></td></tr></table></figure>
+
+<h2 id="DNS-解析"><a href="#DNS-解析" class="headerlink" title="DNS 解析"></a>DNS 解析</h2><p>最后别忘了把指向 CDN 的域名重新解析到自己的服务器上啊。</p>
+<h1 id="销毁腾讯云-COS-及-CDN"><a href="#销毁腾讯云-COS-及-CDN" class="headerlink" title="销毁腾讯云 COS 及 CDN"></a>销毁腾讯云 COS 及 CDN</h1><p>首先去腾讯云控制台，到 <code>内容分发网络</code> - <code>域名管理</code> 里把所有的域名都停了删了，然后再切换到 <code>对象存储</code> 把所有的桶数据清除，然后销毁。</p>
+<p><img src="https://image.neko7ina.com/20220930/2.jpg" style="aspect-ratio: 1098 / 533;width:90%;max-width:1098px" srcset="https://image.neko7ina.com/20220930/2_proc.jpg" lazyload loading="lazy"></p>
+<p><img src="https://image.neko7ina.com/20220930/3.jpg" style="aspect-ratio: 824 / 705;width:90%;max-width:824px" srcset="https://image.neko7ina.com/20220930/3_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">全都给你扬完！</font></i></center>
+
+</br>
+
+<p>本来用 CDN 就是为了 COS 的，现在你 CDN 砍了，那我 COS 也没必要继续消费了呗。</p>
+<p>可惜了账户里还有的一点余额。</p>
+<p><img src="https://image.neko7ina.com/20220930/4.jpg" style="aspect-ratio: 191 / 116;width:90%;max-width:191px" srcset="https://image.neko7ina.com/20220930/4_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">不多，但再用到不知是何时了</font></i></center>
+
+</br>
+
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>可能近两年经济确实不太好，要砍就大大方方砍呗，别又当又立的。</p>
+<p>您随意，我是不陪您玩了，拜拜了您嘞！</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%98%E8%85%BE/" class="category-chain-item">折腾</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8A%98%E8%85%BE/" class="print-no-link">#折腾</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/3pYN3eLUDHwEYg.html" title="使用 ZeroTier 单向打通家庭局域网">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">使用 ZeroTier 单向打通家庭局域网</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/3pYN3eKzESfkFS.html" title="漂流流水账">
+                        <span class="hidden-mobile">漂流流水账</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://static.neko7ina.com/twikoo/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://twikoo.neko7ina.com/","region":"ap-shanghai","path":"window.location.pathname","prismCdn":"https://static.neko7ina.com/prism"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      苏ICP备19071122号-1
+    </a>
+  </span>
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+
+<script  src="https://static.neko7ina.com/jquery/jquery.min.js" ></script>
+<script  src="https://static.neko7ina.com/twitter-bootstrap/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://static.neko7ina.com/typed.js/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/tocbot/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://static.neko7ina.com/clipboard.js/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/anchor-js/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/fancybox/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,734 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://image.neko7ina.com/base/favicon.png">
+  <link rel="icon" href="https://image.neko7ina.com/base/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="NeKo7inA">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="换了 Pixel 5 这么多天，总算是见到了全网通以及 VoLTE 模块了。 除此以外，还有国内 5G 的开通。 经过测试使用，所有功能全部正常。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pixel 5 全网通及开启 5G 与 VoLTE">
+<meta property="og:url" content="https://neko7ina.com/5g-and-volte-on-pixel-5.html">
+<meta property="og:site_name" content="七味茶盏">
+<meta property="og:description" content="换了 Pixel 5 这么多天，总算是见到了全网通以及 VoLTE 模块了。 除此以外，还有国内 5G 的开通。 经过测试使用，所有功能全部正常。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.neko7ina.com/20210228/index.jpg">
+<meta property="article:published_time" content="2021-02-27T17:25:07.000Z">
+<meta property="article:modified_time" content="2026-03-15T08:04:17.032Z">
+<meta property="article:author" content="NeKo7inA">
+<meta property="article:tag" content="折腾">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://image.neko7ina.com/20210228/index.jpg">
+  
+  
+  
+  <title>Pixel 5 全网通及开启 5G 与 VoLTE - 七味茶盏</title>
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/twitter-bootstrap/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/github-markdown-css/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/hint.css/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/fancybox/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="https://static.neko7ina.com/iconfont/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"neko7ina.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":77,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://image.neko7ina.com/base/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-XKLHJ9PV58"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-XKLHJ9PV58", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-XKLHJ9PV58');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 47vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>七味茶盏</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-clock-fill"></i>
+                <span>时间线</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/trophys/" target="_self">
+                <i class="iconfont2 icon-playstation-fill"></i>
+                <span>奖杯</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://image.neko7ina.com/base/index.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Pixel 5 全网通及开启 5G 与 VoLTE"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-02-28 01:25" pubdate>
+          2021 年 2 月 28 日 星期日 凌晨 1:25
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          994 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Pixel 5 全网通及开启 5G 与 VoLTE</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>换了 Pixel 5 这么多天，总算是见到了全网通以及 VoLTE 模块了。</p>
+<p>除此以外，还有国内 5G 的开通。</p>
+<p>经过测试使用，所有功能全部正常。</p>
+<span id="more"></span>
+
+<div class="note note-info">
+            <p><strong>2022.10.16 更新</strong>：模块的缺陷。</p><p><strong>2022.10.07 更新</strong>：付费模块链接失效，更新新的联系方式。</p><p><strong>2022.03.31 更新</strong>：更新免费与付费模块选择问题。</p><p><strong>2021.11.23 更新</strong>：更新 Android 12 可用付费模块。</p><p><strong>2021.10.29 更新</strong>：更新 Android 12 正式后，VoLTE 失效，目前没有解决办法。</p><p><strong>2021.07.12 更新</strong>：新模块相关信息。</p>
+          </div>
+
+<blockquote>
+<p>首页图片 Pixiv ID &#x3D; 86504066</p>
+</blockquote>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>使用方法很简单，但是首先要将机器 root，并且刷入了 Magisk。</p>
+<p>这些准备工作的方法网上有很多教程，就不再赘述。</p>
+<p>然后打开该项目的 GitHub，地址 <del><a target="_blank" rel="noopener" href="https://github.com/ender-zhao/Pixel-5-operator-network-unlock">https://github.com/ender-zhao/Pixel-5-operator-network-unlock</a></del>。</p>
+<p>在 Release 里下载模块，然后在手机上打开 Magisk App，从本地刷入模块，完成后重启手机。</p>
+<p>不出意外，现在 Pixel 5 就可以正常使用国内运营商的所有功能了。</p>
+<div class="note note-info">
+            <p><strong>&lt;2021.07.12 更新&gt;</strong></p><p>新模块相关信息。</p>
+          </div>
+
+<p><del>该项目已被作者暂时关闭，原有的模块可以正常工作</del>。</p>
+<p><del>推荐使用另一位作者的项目，新的模块可以点下方链接达到</del>。</p>
+<p><del><a target="_blank" rel="noopener" href="https://github.com/swangjang/Pixel-Redbull-Carrier-Patch">https://github.com/swangjang/Pixel-Redbull-Carrier-Patch</a></del></p>
+<p><del>经测试，刷入 <code>Pixel-Bramble-Redfin-Carrier-Patch-v0.4B.zip.zip</code> 可以正常工作</del>。</p>
+<div class="note note-info">
+            <p><strong>&lt;2021.11.23 更新&gt;</strong></p><p>更新 Android 12 可用付费模块。</p>
+          </div>
+
+<p>由 Sun Dream 制作的模块可以正常工作，但是该模块需要付费，这里不便分享，如有需要可以点下放闲鱼链接联系作者购买。</p>
+<p><del><a target="_blank" rel="noopener" href="https://m.tb.cn/h.f6miRUh">https://m.tb.cn/h.f6miRUh</a></del></p>
+<div class="note note-info">
+            <p><strong>&lt;2022.03.31 更新&gt;</strong></p><p>更新免费与付费模块选择问题。</p>
+          </div>
+
+<p>根据留言的朋友告知，在他的设备上之前的免费模块依然可以正常工作，建议大家先尝试下文中提及的两个免费模块，如像我一样都无法工作，再考虑是否购买付费模块。</p>
+<div class="note note-info">
+            <p><strong>&lt;2022.10.07 更新&gt;</strong></p><p>付费模块链接失效，更新新的联系方式。</p>
+          </div>
+
+<p>原付费模块链接已失效，新的寻找方式作者回复如下：</p>
+<blockquote>
+<p>闲鱼搜索用户 Sun_Dream 即可找到</p>
+</blockquote>
+<div class="note note-info">
+            <p><strong>&lt;2022.10.16 更新&gt;</strong></p><p>模块的缺陷。</p>
+          </div>
+
+<p>需要注意的是，所有的 Pixel 5 此类模块都只支持 NSA 的 5G 基站，如果所处地域 NSA 基站覆盖不足又或逐渐退网，那么会无法使用 5G。</p>
+<p>VoLTE 目前不受影响。</p>
+<h1 id="成果展示"><a href="#成果展示" class="headerlink" title="成果展示"></a>成果展示</h1><p>先展示下手机信息（拨号盘输入 <code>*#*#4636#*#*</code>）。</p>
+<p><img src="https://image.neko7ina.com/20210228/1.jpg" style="aspect-ratio: 1080 / 2340;width:37%;max-width:1080px" srcset="https://image.neko7ina.com/20210228/1_proc.jpg" lazyload loading="lazy" width="37%"></p>
+
+<center><i><font color="#6c757d">手机信息</font></i></center>
+
+</br>
+
+<p>这里可以看到 VoLTE 及 5G 的相关功能已经全部开启了。</p>
+<p>打个电话测试一下（大半夜给朋友打电话……还好没被打死），VoLTE 确实也正常工作。</p>
+<p><img src="https://image.neko7ina.com/20210228/2.jpg" style="aspect-ratio: 1080 / 2340;width:37%;max-width:1080px" srcset="https://image.neko7ina.com/20210228/2_proc.jpg" lazyload loading="lazy" width="37%"></p>
+
+<center><i><font color="#6c757d">VoLTE 正常工作</font></i></center>
+
+</br>
+
+<p>虽然没有开通 5G 套餐，但是手机可以正常和 5G 基站进行通讯，并且速度明显好于 4G 时。</p>
+<p><img src="https://image.neko7ina.com/20210228/3.jpg" style="aspect-ratio: 1080 / 2340;width:37%;max-width:1080px" srcset="https://image.neko7ina.com/20210228/3_proc.jpg" lazyload loading="lazy" width="37%"></p>
+
+<center><i><font color="#6c757d">移动数据显示为 5G</font></i></center>
+
+<p><img src="https://image.neko7ina.com/20210228/4.jpg" style="aspect-ratio: 1080 / 2340;width:37%;max-width:1080px" srcset="https://image.neko7ina.com/20210228/4_proc.jpg" lazyload loading="lazy" width="37%"></p>
+
+<center><i><font color="#6c757d">4G 套餐 5G 模式测速</font></i></center>
+
+</br>
+
+<p>不过电信卡和移动卡是否正常工作就无法测试，个人并没有办理这两家运营商的手机卡，这个就只能等待大家亲自去尝试了。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>总得来说，这款模块应该是能够解决 Pixel 5 在国内使用时各种国内运营商水土不服的问题了。</p>
+<p>之前网上也有一些 Pixel 5 的运营商功能破解相关，收费不收费暂且不表，毕竟我觉得别人付出了心思去研究这个，想要收费也无可厚非。</p>
+<p>但是方式有一定的局限性，不如 Magisk 模块简单易用，也不会有一些换卡失效的副作用。</p>
+<p>如果觉得不错，还是希望能够给原作者捐赠一下，表示心意。</p>
+<p><del>捐赠方式在项目中写了入口，或可以直接 <a target="_blank" rel="noopener" href="https://github.com/ender-zhao/EZc">点击这里</a></del>。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%98%E8%85%BE/" class="category-chain-item">折腾</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8A%98%E8%85%BE/" class="print-no-link">#折腾</a>
+      
+        <a href="/tags/Android/" class="print-no-link">#Android</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/fancybox-support-on-twikoo.html" title="为 Twikoo 评论系统添加图片点击放大功能">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">为 Twikoo 评论系统添加图片点击放大功能</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cyber-shadow.html" title="Cyber Shadow">
+                        <span class="hidden-mobile">Cyber Shadow</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://static.neko7ina.com/twikoo/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://twikoo.neko7ina.com/","region":"ap-shanghai","path":"window.location.pathname","prismCdn":"https://static.neko7ina.com/prism"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      苏ICP备19071122号-1
+    </a>
+  </span>
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+
+<script  src="https://static.neko7ina.com/jquery/jquery.min.js" ></script>
+<script  src="https://static.neko7ina.com/twitter-bootstrap/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://static.neko7ina.com/typed.js/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/tocbot/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://static.neko7ina.com/clipboard.js/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/anchor-js/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/fancybox/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

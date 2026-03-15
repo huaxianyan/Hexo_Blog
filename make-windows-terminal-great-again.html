@@ -1,0 +1,750 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://image.neko7ina.com/base/favicon.png">
+  <link rel="icon" href="https://image.neko7ina.com/base/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="NeKo7inA">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="之前外出办公都是拿公司的 MacBook Pro，终端当时也好好装修了一番。 还回去之后，找出了我 2014 年购买的 Windows 笔记本，这终端用起来就不太舒服了。 正好假期在家没事做，也给咱 Windows 的终端装修一个！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Make Windows Terminal Great Again!">
+<meta property="og:url" content="https://neko7ina.com/make-windows-terminal-great-again.html">
+<meta property="og:site_name" content="七味茶盏">
+<meta property="og:description" content="之前外出办公都是拿公司的 MacBook Pro，终端当时也好好装修了一番。 还回去之后，找出了我 2014 年购买的 Windows 笔记本，这终端用起来就不太舒服了。 正好假期在家没事做，也给咱 Windows 的终端装修一个！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.neko7ina.com/20200502/index.jpg">
+<meta property="article:published_time" content="2020-05-02T08:29:27.000Z">
+<meta property="article:modified_time" content="2026-03-15T08:04:17.032Z">
+<meta property="article:author" content="NeKo7inA">
+<meta property="article:tag" content="折腾">
+<meta property="article:tag" content="终端">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://image.neko7ina.com/20200502/index.jpg">
+  
+  
+  
+  <title>Make Windows Terminal Great Again! - 七味茶盏</title>
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/twitter-bootstrap/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/github-markdown-css/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/hint.css/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/fancybox/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="https://static.neko7ina.com/iconfont/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"neko7ina.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":77,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://image.neko7ina.com/base/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-XKLHJ9PV58"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-XKLHJ9PV58", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-XKLHJ9PV58');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 47vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>七味茶盏</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-clock-fill"></i>
+                <span>时间线</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/trophys/" target="_self">
+                <i class="iconfont2 icon-playstation-fill"></i>
+                <span>奖杯</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://image.neko7ina.com/base/index.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Make Windows Terminal Great Again!"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-05-02 16:29" pubdate>
+          2020 年 5 月 2 日 星期六 下午 4:29
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Make Windows Terminal Great Again!</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>之前外出办公都是拿公司的 MacBook Pro，终端当时也好好装修了一番。</p>
+<p>还回去之后，找出了我 2014 年购买的 Windows 笔记本，这终端用起来就不太舒服了。</p>
+<p>正好假期在家没事做，也给咱 Windows 的终端装修一个！</p>
+<span id="more"></span>
+
+<h1 id="Fluent-Terminal"><a href="#Fluent-Terminal" class="headerlink" title="Fluent Terminal"></a>Fluent Terminal</h1><p>出于个人的需求，Windows 上会频繁使用 PowerShell 及 WSL，但是两者自带的终端都不是很方便动手。</p>
+<p>于是我搜索了半天，终于找到了一个比较满意的终端 <a target="_blank" rel="noopener" href="https://github.com/felixse/FluentTerminal">Fluent Terminal</a>。</p>
+<p>其他的或因为启动速度慢，或因为实在是不好看，都被个人 Pass 了。</p>
+<p>安装方法很简单，在管理员模式下的 PowerShell 使用 <a target="_blank" rel="noopener" href="https://chocolatey.org/">Chocolatey</a> 包管理工具直接进行安装。</p>
+<p>个人图省事，直接借用了 <a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/download/">Node.js</a> 安装过程把 Chocolatey 及 Python 直接包圆了。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">choco install fluent<span class="hljs-literal">-terminal</span><br></code></pre></td></tr></table></figure>
+
+<p>由于安装过程的需要，部分行为可能会被某些软件判定高危并拦截，所以在安装前记得关闭这些软件。</p>
+<p><img src="https://image.neko7ina.com/20200502/1.jpg" style="aspect-ratio: 1025 / 675;width:90%;max-width:1025px" srcset="https://image.neko7ina.com/20200502/1_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">尽职的火绒，只能先关掉你了</font></i></center>
+
+</br>
+
+<p>执行完成后 Fluent Terminal 就安装完成了。</p>
+<h1 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h1><p>「工欲善其事，必先利其器」。</p>
+<p>为了满足后续的要求，还需要先安装字体。</p>
+<p>该字体就是大名鼎鼎的 <a target="_blank" rel="noopener" href="https://www.nerdfonts.com/">Nerd Fonts</a> 了。</p>
+<p>在这里找到 <a target="_blank" rel="noopener" href="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip">Hack Nerd Font</a>，下载后安装。</p>
+<p>准备工作都做完了，接下来可以开始正式装修了。</p>
+<h1 id="正式装修"><a href="#正式装修" class="headerlink" title="正式装修"></a>正式装修</h1><h2 id="PowerShell"><a href="#PowerShell" class="headerlink" title="PowerShell"></a>PowerShell</h2><p>这次不打算对 PowerShell 动太大刀，毕竟目前也就跑点 Python 工具，使用程度不算重，<a target="_blank" rel="noopener" href="https://github.com/JanDeDobbeleer/oh-my-posh">oh-my-posh</a> 之类的回头有时间再处理。</p>
+<p>打开 Fluent Terminal，点开左上角菜单选择 <code>设置</code> - <code>终端</code>，将 <code>字体</code> 项选为 <code>Hack Nerd Font Mono</code>，字体大小看个人喜好。</p>
+<p><img src="https://image.neko7ina.com/20200502/2.jpg" style="aspect-ratio: 1000 / 791;width:90%;max-width:1000px" srcset="https://image.neko7ina.com/20200502/2_proc.jpg" lazyload loading="lazy"></p>
+<p>再找到 <code>配置文件</code> - <code>Powershell</code> - <code>编辑</code>，将 <code>主题</code> 选为 <code>PowerShell</code>，保存。 </p>
+<p><img src="https://image.neko7ina.com/20200502/3.jpg" style="aspect-ratio: 1002 / 792;width:90%;max-width:1002px" srcset="https://image.neko7ina.com/20200502/3_proc.jpg" lazyload loading="lazy"></p>
+<p>PowerShell 的装修就暂告一段落了。</p>
+<h2 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h2><p>这个用得多，重头戏自然在这。</p>
+<p>个人用的是 Ubuntu 20.04 LTS，其他发行版大同小异。</p>
+<h3 id="配置-Zsh"><a href="#配置-Zsh" class="headerlink" title="配置 Zsh"></a>配置 Zsh</h3><p>首先安装 Zsh 及 <a target="_blank" rel="noopener" href="https://ohmyz.sh/">Oh My Zsh</a>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt install zsh<br>sh -c <span class="hljs-string">&quot;<span class="hljs-subst">$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>然后安装 <a target="_blank" rel="noopener" href="https://github.com/romkatv/powerlevel10k">Powerlevel10k</a> 主题，这里使用 Oh My Zsh 的安装方法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> --depth=1 https://github.com/romkatv/powerlevel10k.git <span class="hljs-variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/themes/powerlevel10k<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim ~/.zshrc<br></code></pre></td></tr></table></figure>
+
+<p>将 <code>ZSH_THEME</code> 修改为 <code>&quot;powerlevel10k/powerlevel10k&quot;</code>，并在下面另起一行粘贴以下内容：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs vim">POWERLEVEL9K_MODE=<span class="hljs-string">&#x27;nerdfont-complete&#x27;</span><br>#POWERLEVEL9K_SHORTEN_DIR_LENGTH=<span class="hljs-number">1</span><br>#POWERLEVEL9K_SHORTEN_DELIMITER=<span class="hljs-string">&quot;&quot;</span><br>#POWERLEVEL9K_SHORTEN_STRATEGY=<span class="hljs-string">&quot;truncate_from_right&quot;</span><br>POWERLEVEL9K_PROMPT_ON_NEWLINE=true<br>POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=<span class="hljs-string">&#x27;&#x27;</span><br>POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=<span class="hljs-string">&#x27;&#x27;</span><br>POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=<span class="hljs-string">&#x27;&#x27;</span><br>POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=<span class="hljs-string">&#x27;&#x27;</span><br>POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=<span class="hljs-string">&quot;%F&#123;blue&#125;\u256D\u2500%F&#123;white&#125;&quot;</span><br>POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=<span class="hljs-string">&quot;%F&#123;blue&#125;\u2570\uf460%F&#123;white&#125; &quot;</span><br>POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir dir_writable_joined)<br>POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time<br>                                    vcs background_jobs_joined time_joined)<br>POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=<span class="hljs-string">&quot;clear&quot;</span><br>POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=<span class="hljs-string">&quot;clear&quot;</span><br>POWERLEVEL9K_VCS_MODIFIED_FOREGROUND=<span class="hljs-string">&quot;yellow&quot;</span><br>POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND=<span class="hljs-string">&quot;yellow&quot;</span><br>POWERLEVEL9K_DIR_HOME_BACKGROUND=<span class="hljs-string">&quot;clear&quot;</span><br>POWERLEVEL9K_DIR_HOME_FOREGROUND=<span class="hljs-string">&quot;blue&quot;</span><br>POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND=<span class="hljs-string">&quot;clear&quot;</span><br>POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND=<span class="hljs-string">&quot;blue&quot;</span><br>POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND=<span class="hljs-string">&quot;clear&quot;</span><br>POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND=<span class="hljs-string">&quot;red&quot;</span><br>POWERLEVEL9K_DIR_DEFAULT_BACKGROUND=<span class="hljs-string">&quot;clear&quot;</span><br>POWERLEVEL9K_DIR_DEFAULT_FOREGROUND=<span class="hljs-string">&quot;blue&quot;</span><br>POWERLEVEL9K_ROOT_INDICATOR_BACKGROUND=<span class="hljs-string">&quot;clear&quot;</span><br>POWERLEVEL9K_ROOT_INDICATOR_FOREGROUND=<span class="hljs-string">&quot;blue&quot;</span><br>POWERLEVEL9K_STATUS_OK_BACKGROUND=<span class="hljs-string">&quot;clear&quot;</span><br>POWERLEVEL9K_STATUS_OK_FOREGROUND=<span class="hljs-string">&quot;green&quot;</span><br>POWERLEVEL9K_STATUS_ERROR_BACKGROUND=<span class="hljs-string">&quot;clear&quot;</span><br>POWERLEVEL9K_STATUS_ERROR_FOREGROUND=<span class="hljs-string">&quot;red&quot;</span><br>POWERLEVEL9K_TIME_BACKGROUND=<span class="hljs-string">&quot;clear&quot;</span><br>POWERLEVEL9K_TIME_FOREGROUND=<span class="hljs-string">&quot;cyan&quot;</span><br>POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND=<span class="hljs-string">&#x27;clear&#x27;</span><br>POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=<span class="hljs-string">&#x27;magenta&#x27;</span><br>POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND=<span class="hljs-string">&#x27;clear&#x27;</span><br>POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND=<span class="hljs-string">&#x27;green&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>之后保存退出。</p>
+<p>该主题是在 <a target="_blank" rel="noopener" href="https://github.com/Powerlevel9k/powerlevel9k/wiki/show-off-your-config">Show Off Your Config</a> 找到的一款方案，详情点 <a target="_blank" rel="noopener" href="https://github.com/Powerlevel9k/powerlevel9k/wiki/show-off-your-config#mavams-configuration">这里</a>，个人稍加修改了一下。</p>
+<p>终端配色个人钟爱 <a target="_blank" rel="noopener" href="https://github.com/sonph/onehalf">OneHalfDark</a>，Fluent Terminal 可以直接使用 iterm 的配色文件，下载保存 <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/sonph/onehalf/master/iterm/OneHalfLight.itermcolors">OneHalfLight.itermcolors</a>，打开 <code>设置</code> - <code>主题</code> - <code>导入</code>，选择下载的文件，导入保存。</p>
+<p>在主题列表中选中 <code>OneHalfDark</code>，选择 <code>应用</code>，也可以在 <code>配置文件</code> - <code>WSL</code> - <code>编辑</code> 中，将主题选为 <code>OneHalfDark</code>。</p>
+<p>目前看起来就是这个样子了：</p>
+<p><img src="https://image.neko7ina.com/20200502/4.jpg" style="aspect-ratio: 1500 / 1165;width:90%;max-width:1500px" srcset="https://image.neko7ina.com/20200502/4_proc.jpg" lazyload loading="lazy"></p>
+<h3 id="干掉绿油油"><a href="#干掉绿油油" class="headerlink" title="干掉绿油油"></a>干掉绿油油</h3><p>经常用 WSL 都知道，在 WSL 用 <code>ls</code> 查看硬盘上的文件时，总会绿油油的一片，这究竟是为什么呢？</p>
+<p><img src="https://image.neko7ina.com/20200502/5.jpg" style="aspect-ratio: 861 / 626;width:90%;max-width:861px" srcset="https://image.neko7ina.com/20200502/5_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">太瞎眼了</font></i></center>
+
+</br>
+
+<p>这边有一篇 Blog 讲到 <a target="_blank" rel="noopener" href="https://printempw.github.io/wsl-guide/#6-6-DrvFs-%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98">DrvFs 文件权限问题</a>，解释了为何会出现这样的问题。</p>
+<p>那么如何解决呢？</p>
+<p>如果不用那篇 Blog 中提到的解决方案，还可以直接修改 rc 文件来解决，方法来自 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/adddcac758c7">这里</a>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span><br><span class="hljs-built_in">dircolors</span> -p &gt; .<span class="hljs-built_in">dircolors</span><br>vim .<span class="hljs-built_in">dircolors</span><br></code></pre></td></tr></table></figure>
+
+<p>修改如图所示的内容，将背景色改为文字颜色，再加上下划线区别。</p>
+<p><img src="https://image.neko7ina.com/20200502/6.jpg" style="aspect-ratio: 855 / 356;width:90%;max-width:855px" srcset="https://image.neko7ina.com/20200502/6_proc.jpg" lazyload loading="lazy"></p>
+<p>然后最后再让其生效。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim ~/.zshrc<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs vim"># enable color support of <span class="hljs-keyword">ls</span> <span class="hljs-built_in">and</span> also <span class="hljs-built_in">add</span> handy aliases<br><span class="hljs-keyword">if</span> [ -<span class="hljs-keyword">x</span> /usr/bin/dircolors ]; then<br>test -r ~/.dircolors &amp;&amp; <span class="hljs-built_in">eval</span> <span class="hljs-string">&quot;$(dircolors -b ~/.dircolors)&quot;</span> || <span class="hljs-built_in">eval</span> <span class="hljs-string">&quot;$(dircolors -b)&quot;</span><br>alias <span class="hljs-keyword">ls</span>=<span class="hljs-string">&#x27;ls --color=auto&#x27;</span><br>#alias dir=<span class="hljs-string">&#x27;dir --color=auto&#x27;</span><br>#alias vdir=<span class="hljs-string">&#x27;vdir --color=auto&#x27;</span><br>alias <span class="hljs-keyword">grep</span>=<span class="hljs-string">&#x27;grep --color=auto&#x27;</span><br>alias fgrep=<span class="hljs-string">&#x27;fgrep --color=auto&#x27;</span><br>alias egrep=<span class="hljs-string">&#x27;egrep --color=auto&#x27;</span><br>fi<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> .zshrc<br></code></pre></td></tr></table></figure>
+
+<p>现在看起来就好多了。</p>
+<p><img src="https://image.neko7ina.com/20200502/7.jpg" style="aspect-ratio: 838 / 615;width:90%;max-width:838px" srcset="https://image.neko7ina.com/20200502/7_proc.jpg" lazyload loading="lazy"></p>
+<h1 id="Windows-Terminal"><a href="#Windows-Terminal" class="headerlink" title="Windows Terminal"></a>Windows Terminal</h1><p>其实 Windows Terminal 也不错，在折腾完 Fluent Terminal 后，只需要少量的设置就能够使用了，可以拿来作为备选方案。</p>
+<h2 id="字体-1"><a href="#字体-1" class="headerlink" title="字体"></a>字体</h2><p>Windows Terminal 可以为不同的 Shell 设置不同的字体，那么对于经常用在中文环境的 PowerShell 来说，我更喜欢 <a target="_blank" rel="noopener" href="https://github.com/be5invis/Sarasa-Gothic">更纱黑体</a> 一些，下载后安装即可。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>Windows Terminal 的配置完全靠修改 json 文件实现，但是这样有了更大的自由度。</p>
+<p>首先找到 PowerShell 那段，比如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-comment">// Make changes here to the powershell.exe profile.</span><br>    <span class="hljs-attr">&quot;guid&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&#123;61c54bbd-c2c6-5271-96e7-009a87ff44bf&#125;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Windows PowerShell&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;commandline&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;powershell.exe&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;hidden&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>稍微修改后就变成这样：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-comment">// Make changes here to the powershell.exe profile.</span><br>    <span class="hljs-attr">&quot;guid&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&#123;61c54bbd-c2c6-5271-96e7-009a87ff44bf&#125;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Windows PowerShell&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;commandline&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;powershell.exe&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;fontFace&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Sarasa Mono SC&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;fontSize&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">12</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;background&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;#123456&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;colorScheme&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;One Half Dark&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;hidden&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>这里试了试 <code>#123456</code> 颜色比 Fluent Terminal 里 <code>PowerShell</code> 主题的 <code>#012456</code> 要更舒服，于是回过头把 Fluent Terminal 里也改了（Copy 一份后再修改）。</p>
+<p>WSL 部分也修改了一下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;guid&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&#123;07b52e3e-de2c-5db4-bd2d-ba144ed6c273&#125;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;hidden&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;WSL&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;source&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Windows.Terminal.Wsl&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;fontFace&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Hack Nerd Font Mono&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;fontSize&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">14</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;colorScheme&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;One Half Dark&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>顺便把 Azure Cloud Shell 给隐藏了：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;guid&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&#123;b453ae62-4e3d-5e58-b989-0a998ec441b8&#125;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;hidden&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Azure Cloud Shell&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;source&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Windows.Terminal.Azure&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;hidden&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>找到 <code>defaultProfile</code> 这项，将其中的值改为需要的 Shell 的 guid，这里选择了 WSL：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;defaultProfile&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&#123;07b52e3e-de2c-5db4-bd2d-ba144ed6c273&#125;&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>再找到 <code>keybindings</code> 这项，加个 <code>Ctrl+W</code> 关闭标签的快捷键：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;keybindings&quot;</span><span class="hljs-punctuation">:</span><br>    <span class="hljs-punctuation">[</span><br>        ……<br>        <span class="hljs-punctuation">&#123;</span> <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;closeTab&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;keys&quot;</span><span class="hljs-punctuation">:</span>  <span class="hljs-string">&quot;ctrl+w&quot;</span> <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>        ……<br>    <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://image.neko7ina.com/20200502/8.jpg" style="aspect-ratio: 1691 / 890;width:90%;max-width:1691px" srcset="https://image.neko7ina.com/20200502/8_proc.jpg" lazyload loading="lazy"></p>
+<p><img src="https://image.neko7ina.com/20200502/9.jpg" style="aspect-ratio: 1691 / 890;width:90%;max-width:1691px" srcset="https://image.neko7ina.com/20200502/9_proc.jpg" lazyload loading="lazy"></p>
+<p>最后的效果也还是不错的嘛。</p>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>现在 Windows 上使用终端的体验是越来越好了，个人对于虚拟机、双系统的依赖也是越来越低了。</p>
+<p>希望微软自家的 Windows Terminal 能够再接再厉，我可是相当看好哟！</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%98%E8%85%BE/" class="category-chain-item">折腾</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8A%98%E8%85%BE/" class="print-no-link">#折腾</a>
+      
+        <a href="/tags/%E7%BB%88%E7%AB%AF/" class="print-no-link">#终端</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/tips-on-shell-about-lazy.html" title="Shell 的偷懒技巧">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Shell 的偷懒技巧</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/rtx-voice.html" title="现在真的可以「N 卡音质好」了">
+                        <span class="hidden-mobile">现在真的可以「N 卡音质好」了</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://static.neko7ina.com/twikoo/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://twikoo.neko7ina.com/","region":"ap-shanghai","path":"window.location.pathname","prismCdn":"https://static.neko7ina.com/prism"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      苏ICP备19071122号-1
+    </a>
+  </span>
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+
+<script  src="https://static.neko7ina.com/jquery/jquery.min.js" ></script>
+<script  src="https://static.neko7ina.com/twitter-bootstrap/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://static.neko7ina.com/typed.js/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/tocbot/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://static.neko7ina.com/clipboard.js/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/anchor-js/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/fancybox/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,801 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://image.neko7ina.com/base/favicon.png">
+  <link rel="icon" href="https://image.neko7ina.com/base/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="NeKo7inA">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="我从 Nexus 6P 开始就一直用 Google 家的手机了。 这个智能法定工作日闹钟之前也尝试过几次，但都是失败了。 前段时间突然又想到这个事情，就又整了整。 但这次，我成功了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="让原生 Android 与 iOS 也用上法定工作日闹钟">
+<meta property="og:url" content="https://neko7ina.com/3pYN3gXTekN1MJ.html">
+<meta property="og:site_name" content="七味茶盏">
+<meta property="og:description" content="我从 Nexus 6P 开始就一直用 Google 家的手机了。 这个智能法定工作日闹钟之前也尝试过几次，但都是失败了。 前段时间突然又想到这个事情，就又整了整。 但这次，我成功了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.neko7ina.com/20230427/index.jpg">
+<meta property="article:published_time" content="2023-04-27T13:24:27.000Z">
+<meta property="article:modified_time" content="2026-03-15T08:04:17.033Z">
+<meta property="article:author" content="NeKo7inA">
+<meta property="article:tag" content="折腾">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://image.neko7ina.com/20230427/index.jpg">
+  
+  
+  
+  <title>让原生 Android 与 iOS 也用上法定工作日闹钟 - 七味茶盏</title>
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/twitter-bootstrap/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/github-markdown-css/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/hint.css/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/fancybox/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="https://static.neko7ina.com/iconfont/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"neko7ina.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":77,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://image.neko7ina.com/base/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-XKLHJ9PV58"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-XKLHJ9PV58", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-XKLHJ9PV58');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 47vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>七味茶盏</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-clock-fill"></i>
+                <span>时间线</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/trophys/" target="_self">
+                <i class="iconfont2 icon-playstation-fill"></i>
+                <span>奖杯</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://image.neko7ina.com/base/index.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="让原生 Android 与 iOS 也用上法定工作日闹钟"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-27 21:24" pubdate>
+          2023 年 4 月 27 日 星期四 晚上 9:24
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">让原生 Android 与 iOS 也用上法定工作日闹钟</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>我从 Nexus 6P 开始就一直用 Google 家的手机了。</p>
+<p>这个智能法定工作日闹钟之前也尝试过几次，但都是失败了。</p>
+<p>前段时间突然又想到这个事情，就又整了整。</p>
+<p>但这次，我成功了。</p>
+<span id="more"></span>
+
+<div class="note note-info">
+            <p><strong>2024.06.18 更新</strong>：补充服务开机自启相关配置。</p><p><strong>2023.12.27 更新</strong>：新增接口 API 自动更新部分。</p><p><strong>2023.07.11 更新</strong>：补充 MacroDroid 条件的添加方式。</p>
+          </div>
+
+<h1 id="小试牛刀"><a href="#小试牛刀" class="headerlink" title="小试牛刀"></a>小试牛刀</h1><div class="note note-success">
+            <p>这段是刚开始折腾的过程，仅限 Android 并且需要「拨号上网」。</p><p>想看新且通用的方法请在右侧目录选择「开袋即食」。</p>
+          </div>
+
+<p>我在 Android 上一直都用 <a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.arlosoft.macrodroid&hl=zh&gl=US">MacroDroid</a> 来进行自动化控制，方便我偷懒。</p>
+<p>在某个深夜躺在床上无聊的时候，我发现它可以读取我 Google 日历中的事件并以此为触发条件，于是灵感就这么来了。</p>
+<p>整体的工作逻辑很简单：<strong>将法定节假日和调休日导入进 Google 日历中，然后使用 MacroDroid 读取对应的事件自动判断是否设置闹钟</strong>。</p>
+<p>那么首先，我们得先将数据喂进日历当中。</p>
+<p>很快啊，在互联网上冲浪了几分钟，我就找到了有大佬做的现成的方案，<a target="_blank" rel="noopener" href="https://github.com/lanceliao/china-holiday-calender">中国节假日补班日历</a>。</p>
+<p>然后打开 Google 日历网页版，左下角的 <code>其他日历</code> 处有一个加号，点击加号选择 <code>通过网址添加</code> 就可以把上面大佬做的日历给订阅进自己的日历中。</p>
+<p><img src="https://image.neko7ina.com/20230427/1.jpg" style="aspect-ratio: 477 / 330;width:90%;max-width:477px" srcset="https://image.neko7ina.com/20230427/1_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">订阅日历</font></i></center>
+
+</br>
+
+<p>为了方便后期判断，我们需要将 <code>节假日</code> 和 <code>补班</code> 拆成两个日历订阅。</p>
+<div class="note note-success">
+            <p>节假日订阅链接：<br><code>https://www.shuyz.com/githubfiles/china-holiday-calender/master/holidayCal-HO.ics</code></p><p>补班订阅链接：</p><p><code>https://www.shuyz.com/githubfiles/china-holiday-calender/master/holidayCal-CO.ics?compStart=*&amp;compEnd=*</code></p><p>这里补班（调休）需要用到全天事件，所以按照文档在后面追加参数，这种加参定制用法仅支持作者的国内订阅地址链接，需注意。</p>
+          </div>
+
+<p>这样数据的准备就完成了。</p>
+<p>接下来工作转到手机这边，在手机上打开 Google 日历，让订阅的数据同步一下。</p>
+<div class="note note-success">
+            <p>个人在测试的过程中发现 MacroDroid 读不读得到日历和机器上的 Google 日历 App 有很大关系，而且也出现过重启手机后 MacroDroid 读不到日历事件的情况，需要多次打开 Google 日历 App 才能解决。</p><p>这个也是我为什么会继续优化的原因，具体优化方案见下一段。</p>
+          </div>
+
+<p>然后打开 MacroDroid，正式的开始写宏了。</p>
+<p>判断的逻辑很简单，<strong>在周一到周五期间排除掉处在节假日日历中的日子，以及在周六周日期间拎出处在补班日历中的日子</strong>，这些日子让 MacroDroid 自动为手机设置闹钟，就可以达到智能法定工作日闹钟的目的了。</p>
+<p>添加一个新宏，<code>触发器</code> 选择每天凌晨刚过几分的时间，<code>动作</code> 呢则是设置闹钟，想设置几个就设置几个。</p>
+<div class="note note-info">
+            <p><strong>&lt;2023.07.11 更新&gt;</strong></p><p><code>与</code> 与 <code>或</code> 条件添加方式为 <code>MacroDroid 待定</code> - <code>与/或/异或/非</code> 然后选择需要的条件。</p><p>如若在其中嵌套具体的逻辑时，在已添加的条件上点击，选择 <code>添加约束</code> 即可往其层级下添加其他条件。</p>
+          </div>
+
+<p><code>约束条件</code> 是重头戏，首先先设置一个<code>或</code> 条件，然后在其中再设置两个 <code>与</code> 条件，第一个 <code>与</code> 条件下先设置条件 <code>每周某天</code>，勾选中周一至周五，再设置条件 <code>日历条目</code>，选择日历为 <code>节假日</code>，选项为 <code>不在事件中</code>；第二个 <code>与</code> 条件设置类似，先设置条件 <code>每周某天</code>，勾选中周六与周日，再设置条件 <code>日历条目</code>，选择日历为 <code>补班</code>，选项为 <code>在事件中</code> 即可。</p>
+<p>是不是有点晕了？看下图就一目了然了。</p>
+<p><img src="https://image.neko7ina.com/20230427/2.jpg" style="aspect-ratio: 1080 / 2340;width:37%;max-width:1080px" srcset="https://image.neko7ina.com/20230427/2_proc.jpg" lazyload loading="lazy" width="37%"></p>
+
+<center><i><font color="#6c757d">日历条目选项</font></i></center>
+
+<p><img src="https://image.neko7ina.com/20230427/3.jpg" style="aspect-ratio: 565 / 645;width:37%;max-width:565px" srcset="https://image.neko7ina.com/20230427/3_proc.jpg" lazyload loading="lazy" width="37%"></p>
+
+<center><i><font color="#6c757d">约束条件</font></i></center>
+
+</br>
+
+<p>修改了手机时间简单测试了一些日子，发现都能按照正常逻辑工作。</p>
+<p>担心 MacroDroid 的触发器因为未知的原因不工作或错过，就多设置了几个触发时间，但又为了防止重复设置闹钟做无用功，于是在约束条件里再添加了一项检测自己最近一段时间内是否被调用，如果被调用就跳过，没调用就执行，算是避免了做无用功。</p>
+<p><img src="https://image.neko7ina.com/20230427/4.jpg" style="aspect-ratio: 644 / 916;width:37%;max-width:644px" srcset="https://image.neko7ina.com/20230427/4_proc.jpg" lazyload loading="lazy" width="37%"></p>
+
+<center><i><font color="#6c757d">优化过的约束条件</font></i></center>
+
+
+
+<h1 id="深入优化"><a href="#深入优化" class="headerlink" title="深入优化"></a>深入优化</h1><p>虽然东西能够正常的工作，但在使用的过程中发现能够干扰正常工作的因素还不少，并且有些原因至今都未能搞清楚。</p>
+<p>稳定性不强的原因主要在于获取日历的事件上，那么能不能把这部分优化一下呢？</p>
+<p>如果有这么一个接口，很直观的在返回结果里告诉设备今天是不是工作日，然后设备自己根据结果来决定是否设置闹钟，这样是不是稳定性更强一些呢？</p>
+<p>思路有了，那么就动手干吧！</p>
+<p>正好手上有一台腾讯云轻量无忧的机器，于是就萌生了利用这个机器开一个接口，将判断是否是工作的事情在服务器上做，手机则负责拿结果判断是否设置闹钟就可以了。</p>
+<p>首先先找一份数据，于是我又花了点时间在互联网上冲浪，找到了另一位大佬做的免费接口 <a target="_blank" rel="noopener" href="https://timor.tech/api/holiday">免费节假日 API</a>。</p>
+<p>然后请出我的厉害同事法爷，帮我用 Node.js 写了个简单的 <code>index.js</code>，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Koa</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;koa&#x27;</span>);<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Router</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@koa/router&#x27;</span>);<br><span class="hljs-keyword">const</span> data = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./date.json&#x27;</span>)<br><br><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Koa</span>();<br><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Router</span>();<br><br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">formatNum</span> = (<span class="hljs-params">num</span>) =&gt; &#123;<br>  <span class="hljs-keyword">return</span> num &lt; <span class="hljs-number">10</span> ? <span class="hljs-string">`0<span class="hljs-subst">$&#123;num&#125;</span>`</span> : <span class="hljs-string">`<span class="hljs-subst">$&#123;num&#125;</span>`</span><br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">dateString</span> = (<span class="hljs-params">today</span>) =&gt; &#123;<br>  <span class="hljs-keyword">const</span> month = today.<span class="hljs-title function_">getMonth</span>() + <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">const</span> date = today.<span class="hljs-title function_">getDate</span>();<br>  <span class="hljs-keyword">return</span> [<span class="hljs-string">`<span class="hljs-subst">$&#123;formatNum(month)&#125;</span>-<span class="hljs-subst">$&#123;formatNum(date)&#125;</span>`</span>, today.<span class="hljs-title function_">getDay</span>()];<br>&#125;<br><br>router.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/:date?&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">ctx, next</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> [key, day] = ctx.<span class="hljs-property">params</span>.<span class="hljs-property">date</span> ? <span class="hljs-title function_">dateString</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(ctx.<span class="hljs-property">params</span>.<span class="hljs-property">date</span>)) : <span class="hljs-title function_">dateString</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>());<br>  <span class="hljs-keyword">const</span> obj = data.<span class="hljs-property">holiday</span>[key];<br>  <span class="hljs-keyword">if</span> (obj) &#123;<br>    <span class="hljs-keyword">if</span> (obj.<span class="hljs-property">holiday</span>) &#123;<br>      ctx.<span class="hljs-property">body</span> = <span class="hljs-string">&#x27;1&#x27;</span><br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      ctx.<span class="hljs-property">body</span> = <span class="hljs-string">&#x27;0&#x27;</span><br>    &#125;<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (day === <span class="hljs-number">6</span> || day === <span class="hljs-number">0</span>) &#123;<br>    ctx.<span class="hljs-property">body</span> = <span class="hljs-string">&#x27;1&#x27;</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    ctx.<span class="hljs-property">body</span> = <span class="hljs-string">&#x27;0&#x27;</span><br>  &#125;<br>&#125;);<br><br>app<br>  .<span class="hljs-title function_">use</span>(router.<span class="hljs-title function_">routes</span>())<br>  .<span class="hljs-title function_">use</span>(router.<span class="hljs-title function_">allowedMethods</span>());<br><br>app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3007</span>);<br></code></pre></td></tr></table></figure>
+
+<p>当然别忘了把数据放在同目录位置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://timor.tech/api/holiday/year/2023 -O date.json<br></code></pre></td></tr></table></figure>
+
+<p>如果服务器没有环境的话，直接安装个 nvm，借助 nvm 安装 Node.js：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nvm install --lts<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i<br></code></pre></td></tr></table></figure>
+
+<p>来都来了，那再装个 PM2 来方便管理服务吧。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install pm2 -g<br></code></pre></td></tr></table></figure>
+
+<p>使用 PM2 来启动服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pm2 start index.js --name yasumi<br></code></pre></td></tr></table></figure>
+
+<div class="note note-info">
+            <p><strong>&lt;2024.06.18 更新&gt;</strong></p><p>补充一下 PM2 开机自启服务的相关配置。</p>
+          </div>
+
+<p>配置一下开机自启：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">pm2 save<br>pm2 startup<br>systemctl <span class="hljs-built_in">enable</span> pm2-root<br></code></pre></td></tr></table></figure>
+
+<p>因为我这台机器系统是 Ubuntu 20.04，所以 <code>pm2 startup</code> 检测到 systemd 会自动写好服务，直接启用即可。</p>
+<p>再写个 Nginx 反代来暴露接口。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim /etc/nginx/conf.d/yasumi.conf<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;<br>        <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;<br>        <span class="hljs-attribute">server_name</span> yasumi.neko7ina.com;<br>        <span class="hljs-attribute">return</span> <span class="hljs-number">301</span> https://<span class="hljs-variable">$server_name</span><span class="hljs-variable">$request_uri</span>;<br>&#125;<br><br><span class="hljs-section">server</span> &#123;<br>        <span class="hljs-attribute">listen</span> <span class="hljs-number">443</span>;<br>        <span class="hljs-attribute">server_name</span> yasumi.neko7ina.com;<br><br>        <span class="hljs-attribute">ssl_certificate</span> /home/syncthing/ssl/cert.pem;<br>        <span class="hljs-attribute">ssl_certificate_key</span> /home/syncthing/ssl/key.pem;<br><br>        <span class="hljs-section">location</span> / &#123;<br>                <span class="hljs-attribute">proxy_pass</span> http://127.0.0.1:3007;<br>                <span class="hljs-attribute">proxy_http_version</span> <span class="hljs-number">1</span>.<span class="hljs-number">1</span>;<br>                <span class="hljs-attribute">proxy_set_header</span> X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这样，一个法定工作日接口就做好了。</p>
+<p>现在你访问 <a target="_blank" rel="noopener" href="https://yasumi.neko7ina.com/">https://yasumi.neko7ina.com/</a>，返回结果是 1 表示休息，0 表示需要上班。</p>
+<p>同时也支持后面加日期（仅限当年），方便调试，比如 <a target="_blank" rel="noopener" href="https://yasumi.neko7ina.com/2023-5-6">https://yasumi.neko7ina.com/2023-5-6</a> 返回结果就是 0，因为这一天需要上班。（呜呜呜呜……）</p>
+<h1 id="自动更新"><a href="#自动更新" class="headerlink" title="自动更新"></a>自动更新</h1><div class="note note-info">
+            <p><strong>&lt;2023.12.27 更新&gt;</strong></p><p>新增接口 API 自动更新部分。</p>
+          </div>
+
+<p>上面都是手动，想了想每年 12 月 31 号还得手动换一次数据也太麻烦了，那干脆写个脚本来搞吧。</p>
+<p>直接新建一个脚本 <code>update.sh</code> 写如下内容：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-meta">#!/bin/bash</span><br><br>current_year=$(<span class="hljs-built_in">date</span> +<span class="hljs-string">&quot;%Y&quot;</span>)<br><br>new_year=$((current_year + <span class="hljs-number">1</span>))<br><br>source_file_path=<span class="hljs-string">&quot;/srv/www/yasumi/<span class="hljs-variable">$&#123;new_year&#125;</span>.json&quot;</span><br>destination_file_path=<span class="hljs-string">&quot;/srv/www/yasumi/date.json&quot;</span><br>api_url=<span class="hljs-string">&quot;https://timor.tech/api/holiday/year/<span class="hljs-variable">$&#123;new_year&#125;</span>&quot;</span><br><br>wget <span class="hljs-string">&quot;<span class="hljs-variable">$api_url</span>&quot;</span> -O <span class="hljs-string">&quot;<span class="hljs-variable">$source_file_path</span>&quot;</span><br><br><span class="hljs-built_in">cp</span> <span class="hljs-string">&quot;<span class="hljs-variable">$source_file_path</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$destination_file_path</span>&quot;</span><br><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$source_file_path</span> 已成功复制并覆盖 <span class="hljs-variable">$destination_file_path</span>&quot;</span> &gt;&gt; /srv/www/yasumi/update.log<br><br>pm2 reload yasumi<br></code></pre></td></tr></table></figure>
+
+<p>考虑到一年只执行一次输出信息就放同目录下了方便查看。</p>
+<p>注意路径要换成项目实际存放的路径，别忘了给脚本执行权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> +x update.sh<br></code></pre></td></tr></table></figure>
+
+<p>然后使用 <code>crontab</code> 来按时间调用这个脚本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crontab">57 23 31 12 * /srv/www/yasumi/update.sh<br></code></pre></td></tr></table></figure>
+
+<p>现在就完事啦！</p>
+<h1 id="开袋即食"><a href="#开袋即食" class="headerlink" title="开袋即食"></a>开袋即食</h1><p>现在再回来继续做宏就简单多了。</p>
+<p>打开之前的宏，约束条件可以都删了只留一个检测自身最近是否有调用的条件，然后对 <code>动作</code> 进行大刀阔斧的改革。</p>
+<p>先把设置闹钟的这一串动作保存到 <code>代码块</code>，方便后面直接调用减少重复劳动。</p>
+<p>然后清空所有动作，添加动作 <code>HTTP 请求（GET）</code> ，网址填入接口的网址 <a target="_blank" rel="noopener" href="https://yasumi.neko7ina.com/">https://yasumi.neko7ina.com/</a>，下方三个选项全勾上，然后下面的 <code>响应</code> 选项中，选择 <code>将 HTTP 响应保存在字符串变量中</code>，此刻没有变量的话会提示新建一个变量，随便起个名字，这里我新建了个变量为 <code>yasumi</code>。</p>
+<p><img src="https://image.neko7ina.com/20230427/6.jpg" style="aspect-ratio: 1080 / 2340;width:37%;max-width:1080px" srcset="https://image.neko7ina.com/20230427/6_proc.jpg" lazyload loading="lazy" width="37%"></p>
+
+<center><i><font color="#6c757d">HTTP 请求配置</font></i></center>
+
+</br>
+
+<p>再加一个动作等待 1 秒，然后上条件判断：<strong>如果变量 <code>yasumi</code> 的值为 <code>0</code>，则执行之前的设置闹钟动作块</strong>。</p>
+<p>这样的话，宏就完成了。</p>
+<p><img src="https://image.neko7ina.com/20230427/5.jpg" style="aspect-ratio: 1080 / 2340;width:37%;max-width:1080px" srcset="https://image.neko7ina.com/20230427/5_proc.jpg" lazyload loading="lazy" width="37%"></p>
+
+<center><i><font color="#6c757d">完整宏配置</font></i></center>
+
+</br>
+
+<p>抛弃了日历的调用后，现在单靠 MacroDroid 就可以做到了，这样其他的原生 Android 也可以轻松做到。</p>
+<p>什么你问国内安卓？国内安卓这不标配功能吗还要整这个？</p>
+<p>然后是朋友们的 iOS，也可以通过快捷指令来做到智能法定工作日闹钟了！</p>
+<p>但是先别急，先去 iOS 自带的闹钟 App 中设定好自己需要的闹钟，<strong>记住重复选择「永不」</strong>。</p>
+<p>然后打开快捷指令 APP选择 <code>自动化</code>，添加一个新的自动化，<code>当</code> 中设置时间，每天凌晨过几分，然后 <code>执行</code> 中的内容按下图即可。</p>
+<p><img src="https://image.neko7ina.com/20230427/7.jpg" style="aspect-ratio: 750 / 1334;width:47%;max-width:750px" srcset="https://image.neko7ina.com/20230427/7_proc.jpg" lazyload loading="lazy" width="47%"></p>
+
+<center><i><font color="#6c757d">快捷指令</font></i></center>
+
+</br>
+
+<p>这样 iOS 的智能法定工作日闹钟就完成啦！</p>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>折腾了半天，最后的成果还是不错的。</p>
+<p>这个接口大家想要使用都可以用，流量应该也不会有多少，人不多还是撑得住的吧。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%98%E8%85%BE/" class="category-chain-item">折腾</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8A%98%E8%85%BE/" class="print-no-link">#折腾</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/3pYN3gXU6vVKvQ.html" title="更加偷懒的 SSH 技巧">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">更加偷懒的 SSH 技巧</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/3pYN3gXTYEGp7r.html" title="网易暴雪散伙，我退款无门">
+                        <span class="hidden-mobile">网易暴雪散伙，我退款无门</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://static.neko7ina.com/twikoo/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://twikoo.neko7ina.com/","region":"ap-shanghai","path":"window.location.pathname","prismCdn":"https://static.neko7ina.com/prism"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      苏ICP备19071122号-1
+    </a>
+  </span>
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+
+<script  src="https://static.neko7ina.com/jquery/jquery.min.js" ></script>
+<script  src="https://static.neko7ina.com/twitter-bootstrap/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://static.neko7ina.com/typed.js/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/tocbot/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://static.neko7ina.com/clipboard.js/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/anchor-js/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/fancybox/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

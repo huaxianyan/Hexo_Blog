@@ -1,0 +1,748 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://image.neko7ina.com/base/favicon.png">
+  <link rel="icon" href="https://image.neko7ina.com/base/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="NeKo7inA">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="标题口气这么大，实际上只是优化了一下图片懒加载。 因为腾讯 CDN 免费策略收紧，我之前将博客移到了自己的服务器上并且没再上 CDN。 服务器带宽有点小水管，为了体验就开启了图片懒加载。 但是用了才发现，这懒加载问题还不少。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优化一下博客的图片加载">
+<meta property="og:url" content="https://neko7ina.com/3pYN3gXxJqMVfe.html">
+<meta property="og:site_name" content="七味茶盏">
+<meta property="og:description" content="标题口气这么大，实际上只是优化了一下图片懒加载。 因为腾讯 CDN 免费策略收紧，我之前将博客移到了自己的服务器上并且没再上 CDN。 服务器带宽有点小水管，为了体验就开启了图片懒加载。 但是用了才发现，这懒加载问题还不少。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.neko7ina.com/20231223/index.jpg">
+<meta property="article:published_time" content="2023-12-23T06:55:37.000Z">
+<meta property="article:modified_time" content="2026-03-15T08:04:17.033Z">
+<meta property="article:author" content="NeKo7inA">
+<meta property="article:tag" content="折腾">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://image.neko7ina.com/20231223/index.jpg">
+  
+  
+  
+  <title>优化一下博客的图片加载 - 七味茶盏</title>
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/twitter-bootstrap/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/github-markdown-css/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/hint.css/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/fancybox/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="https://static.neko7ina.com/iconfont/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"neko7ina.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":77,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://image.neko7ina.com/base/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-XKLHJ9PV58"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-XKLHJ9PV58", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-XKLHJ9PV58');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 47vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>七味茶盏</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-clock-fill"></i>
+                <span>时间线</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/trophys/" target="_self">
+                <i class="iconfont2 icon-playstation-fill"></i>
+                <span>奖杯</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://image.neko7ina.com/base/index.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="优化一下博客的图片加载"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-12-23 14:55" pubdate>
+          2023 年 12 月 23 日 星期六 下午 2:55
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.2k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">优化一下博客的图片加载</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>标题口气这么大，实际上只是优化了一下图片懒加载。</p>
+<p>因为腾讯 CDN 免费策略收紧，我之前将博客移到了自己的服务器上并且没再上 CDN。</p>
+<p>服务器带宽有点小水管，为了体验就开启了图片懒加载。</p>
+<p>但是用了才发现，这懒加载问题还不少。</p>
+<span id="more"></span>
+
+<p>那光有肯定不够，还得想办法优啊。</p>
+<p>我虽然不会前端，但是我有个万能的同事法爷呀！</p>
+<p>于是我抓着法爷来帮我搞这个图片懒加载的优化……</p>
+<div class="note note-info">
+            <p><strong>2023.12.25 更新</strong>：修正 Fancybox 会处理占位图的问题。</p>
+          </div>
+
+<h1 id="那么都有什么问题呢？"><a href="#那么都有什么问题呢？" class="headerlink" title="那么都有什么问题呢？"></a>那么都有什么问题呢？</h1><p>其实在抓同事之前，我是在互联网里冲浪过的。</p>
+<p>但是发现网络上我能找到的所有的图片懒加载项目，实现的需求都比较简单，处于一个有就行的阶段。</p>
+<p>这些懒加载，都是使用同一张占位图，不可能总和加载完成后的图尺寸一样。</p>
+<p>于是在图片加载完成后，页面布局就会发生抖动。</p>
+<p>尤其是图片较多的博文中，经常会出现内容反卷或跳跃，十分影响体验。</p>
+<p>此外，图片加载完成后的切换是直接切换，过于生硬，观感较差。</p>
+<p>如果有一个过渡特效来切换，应该会让观感好上不少。</p>
+<h1 id="制定需求"><a href="#制定需求" class="headerlink" title="制定需求"></a>制定需求</h1><p>为了解决上面发现的两个问题，我给法爷抛出了两个需求：</p>
+<ul>
+<li><p>占位图尺寸要根据实际图片的长宽比例来决定。</p>
+</li>
+<li><p>图片加载完成后需要有一个过渡效果来切换。</p>
+</li>
+</ul>
+<p>第一个需求保证加载前后占位图和图片在页面上使用的空间一致，即在图片加载前就把位置提前空好了，这样最大限度避免加载完成后页面抖动的问题。</p>
+<p>第二个我为了自己想要的效果，提出了不要统一的占位 Loading 图，而是每个图都生成一个体积很小的缩略图，用这个图进行占位并打上高斯模糊，等图片加载完成使用一个模糊逐渐变清晰的过渡效果切换过去。</p>
+<p>法爷不愧是法爷，做起来那是挺快的。</p>
+<p>但测试中又碰到一些预料外的问题，以及最初我的想法也并不是刚才上面那样，是后来逐渐完善才形成的，所以中间又有修修改改，整个时间跨度有了半年多。</p>
+<h1 id="成果公布"><a href="#成果公布" class="headerlink" title="成果公布"></a>成果公布</h1><p>首先说明，我用的是 <a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid/">Fluid</a> 主题，所以是直接以这个主题为基础进行修改的。</p>
+<div class="note note-info">
+            <p><strong>&lt;2023.12.25 更新&gt;</strong></p><p>修正 Fancybox 会处理占位图的问题。</p>
+          </div>
+
+<p>需要修改的文件有四处，起始目录均为 Fluid 主题根目录。</p>
+
+    <div class="fold">
+      <div class="fold-title fold-default collapsed" data-toggle="collapse" href="#collapse-65ad56e5" role="button" aria-expanded="false" aria-controls="collapse-65ad56e5">
+        <div class="fold-arrow">▶</div>scripts\events\lib\lazyload.js
+      </div>
+      <div class="fold-collapse collapse" id="collapse-65ad56e5">
+        <div class="fold-content">
+          <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-meta">&#x27;use strict&#x27;</span>;<br><br><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)<br><span class="hljs-keyword">const</span> urlJoin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;../../utils/url-join&#x27;</span>);<br><span class="hljs-keyword">const</span> sizeOf = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;image-size&#x27;</span>);<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-function">(<span class="hljs-params">hexo</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> config = hexo.<span class="hljs-property">theme</span>.<span class="hljs-property">config</span>;<br>  <span class="hljs-keyword">const</span> loadingImage = <span class="hljs-title function_">urlJoin</span>(hexo.<span class="hljs-property">config</span>.<span class="hljs-property">root</span>, config.<span class="hljs-property">lazyload</span>.<span class="hljs-property">loading_img</span><br>    || <span class="hljs-title function_">urlJoin</span>(config.<span class="hljs-property">static_prefix</span>.<span class="hljs-property">internal_img</span>, <span class="hljs-string">&#x27;loading.gif&#x27;</span>));<br>  <span class="hljs-keyword">if</span> (!config.<span class="hljs-property">lazyload</span> || !config.<span class="hljs-property">lazyload</span>.<span class="hljs-property">enable</span> || !loadingImage) &#123;<br>    <span class="hljs-keyword">return</span>;<br>  &#125;<br>  <span class="hljs-keyword">if</span> (config.<span class="hljs-property">lazyload</span>.<span class="hljs-property">onlypost</span>) &#123;<br>    hexo.<span class="hljs-property">extend</span>.<span class="hljs-property">filter</span>.<span class="hljs-title function_">register</span>(<span class="hljs-string">&#x27;after_post_render&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">page</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">if</span> (page.<span class="hljs-property">layout</span> !== <span class="hljs-string">&#x27;post&#x27;</span> &amp;&amp; !page.<span class="hljs-property">lazyload</span>) &#123;<br>        <span class="hljs-keyword">return</span>;<br>      &#125;<br>      <span class="hljs-keyword">if</span> (page.<span class="hljs-property">lazyload</span> !== <span class="hljs-literal">false</span>) &#123;<br>        <span class="hljs-title function_">collectImages</span>(page.<span class="hljs-property">content</span>)<br>        <span class="hljs-title function_">getImageSize</span>()<br>        page.<span class="hljs-property">content</span> = <span class="hljs-title function_">lazyImages</span>(page.<span class="hljs-property">content</span>, loadingImage);<br>        page.<span class="hljs-property">content</span> = <span class="hljs-title function_">lazyComments</span>(page.<span class="hljs-property">content</span>);<br>      &#125;<br>      <span class="hljs-keyword">return</span> page;<br>    &#125;);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    hexo.<span class="hljs-property">extend</span>.<span class="hljs-property">filter</span>.<span class="hljs-title function_">register</span>(<span class="hljs-string">&#x27;after_render:html&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">html, data</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">if</span> (!data.<span class="hljs-property">page</span> || data.<span class="hljs-property">page</span>.<span class="hljs-property">lazyload</span> !== <span class="hljs-literal">false</span>) &#123;<br>        <span class="hljs-title function_">collectImages</span>(html)<br>        <span class="hljs-title function_">getImageSize</span>()<br>        html = <span class="hljs-title function_">lazyImages</span>(html, loadingImage);<br>        html = <span class="hljs-title function_">lazyComments</span>(html);<br>        <span class="hljs-keyword">return</span> html;<br>      &#125;<br>    &#125;);<br>  &#125;<br>&#125;;<br><br><span class="hljs-keyword">const</span> imageSet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>();<br><span class="hljs-keyword">const</span> imageMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">getImagePath</span>(<span class="hljs-params">image</span>) &#123;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/^https?:\/\/[^\/]+/</span>.<span class="hljs-title function_">test</span>(image)) &#123;<br>    <span class="hljs-keyword">const</span> str = image.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/^https?:\/\/[^\/]+/</span>, <span class="hljs-string">&#x27;&#x27;</span>)<br>    <span class="hljs-keyword">const</span> result =  str.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&#x27;/images/&#x27;</span>) ? str : <span class="hljs-string">&#x27;/images&#x27;</span> + str<br>    <span class="hljs-keyword">return</span> result<br>  &#125;<br>  <span class="hljs-keyword">return</span> image<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">lazyImages</span> = (<span class="hljs-params">htmlContent, loadingImage</span>) =&gt; &#123;<br>  <span class="hljs-keyword">return</span> htmlContent.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&lt;img[^&gt;]+?src=(&quot;.*?&quot;)[^&gt;]*?&gt;/gim</span>s, <span class="hljs-function">(<span class="hljs-params">str, p1</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/loading=/i</span>.<span class="hljs-title function_">test</span>(str)) &#123;<br>      <span class="hljs-keyword">return</span> str;<br>    &#125;<br>    <span class="hljs-keyword">let</span> widthExist<br>    <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/width=&quot;[^&quot;]+&quot;/</span>.<span class="hljs-title function_">test</span>(str)) &#123;<br>      widthExist = str.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/width=&quot;([^&quot;]+)&quot;/</span>)[<span class="hljs-number">1</span>]<br>    &#125;<br>    <span class="hljs-keyword">const</span> imagePath = <span class="hljs-title function_">getImagePath</span>(p1.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&quot;/g</span>, <span class="hljs-string">&#x27;&#x27;</span>))<br>    <span class="hljs-keyword">const</span> info = imageMap.<span class="hljs-title function_">get</span>(imagePath)<br>    <span class="hljs-keyword">const</span> thumb = p1.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&quot;/g</span>, <span class="hljs-string">&#x27;&#x27;</span>).<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\.[^.]+$/</span>, <span class="hljs-string">&#x27;_proc.jpg&#x27;</span>)<br>    <span class="hljs-keyword">if</span> (info) &#123;<br>      <span class="hljs-keyword">let</span> style = <span class="hljs-string">`aspect-ratio: <span class="hljs-subst">$&#123;info.width&#125;</span> / <span class="hljs-subst">$&#123;info.height&#125;</span>`</span><br>      <span class="hljs-keyword">if</span> (widthExist) &#123;<br>        style += <span class="hljs-string">`;width:<span class="hljs-subst">$&#123;widthExist&#125;</span>`</span><br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        style += <span class="hljs-string">`;width:90%`</span><br>      &#125;<br>      style += <span class="hljs-string">`;max-width:<span class="hljs-subst">$&#123;info.width&#125;</span>px`</span><br>      <span class="hljs-keyword">return</span> str.<span class="hljs-title function_">replace</span>(p1, <span class="hljs-string">`<span class="hljs-subst">$&#123;p1&#125;</span> style=&quot;<span class="hljs-subst">$&#123;style&#125;</span>&quot; srcset=&quot;<span class="hljs-subst">$&#123;thumb&#125;</span>&quot; lazyload loading=&quot;lazy&quot;`</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> str.<span class="hljs-title function_">replace</span>(p1, <span class="hljs-string">`<span class="hljs-subst">$&#123;p1&#125;</span> srcset=&quot;<span class="hljs-subst">$&#123;thumb&#125;</span>&quot; lazyload loading=&quot;lazy&quot;`</span>);<br>  &#125;);<br>&#125;;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">lazyComments</span> = (<span class="hljs-params">htmlContent</span>) =&gt; &#123;<br>  <span class="hljs-keyword">return</span> htmlContent.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&lt;[^&gt;]+?id=&quot;comments&quot;[^&gt;]*?&gt;/gim</span>s, <span class="hljs-function">(<span class="hljs-params">str</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/lazyload/i</span>.<span class="hljs-title function_">test</span>(str)) &#123;<br>      <span class="hljs-keyword">return</span> str;<br>    &#125;<br>    <span class="hljs-keyword">return</span> str.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&#x27;id=&quot;comments&quot;&#x27;</span>, <span class="hljs-string">&#x27;id=&quot;comments&quot; lazyload&#x27;</span>);<br>  &#125;);<br>&#125;;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">collectImages</span> = (<span class="hljs-params">htmlContent</span>) =&gt; &#123;<br>  <span class="hljs-keyword">const</span> images = htmlContent.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/(?&lt;=&lt;img[^&gt;]+?src=&quot;).*?(?=&quot;[^&gt;]*?&gt;)/gim</span>s)<br>  <span class="hljs-keyword">if</span> (images) &#123;<br>    images.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">image</span> =&gt;</span> &#123;<br>      imageSet.<span class="hljs-title function_">add</span>(<span class="hljs-title function_">getImagePath</span>(image))<br>    &#125;)<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">getImageSize</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> imagePath <span class="hljs-keyword">of</span> imageSet) &#123;<br>    <span class="hljs-keyword">if</span> (!imageMap.<span class="hljs-title function_">has</span>(imagePath)) &#123;<br>      <span class="hljs-keyword">const</span> info = <span class="hljs-title function_">sizeOf</span>(path.<span class="hljs-title function_">resolve</span>(process.<span class="hljs-title function_">cwd</span>(), <span class="hljs-string">&#x27;source/&#x27;</span>, imagePath.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/^[\\\/]/</span>, <span class="hljs-string">&#x27;&#x27;</span>)))<br>      imageMap.<span class="hljs-title function_">set</span>(imagePath, info)<br>    &#125;<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="fold">
+      <div class="fold-title fold-default collapsed" data-toggle="collapse" href="#collapse-28ab9646" role="button" aria-expanded="false" aria-controls="collapse-28ab9646">
+        <div class="fold-arrow">▶</div>source\css\_pages\_base\color-schema.styl
+      </div>
+      <div class="fold-collapse collapse" id="collapse-28ab9646">
+        <div class="fold-content">
+          <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-pseudo">:root</span><br>  <span class="hljs-attr">--color-mode</span> &quot;light&quot;<br>  <span class="hljs-attr">--body-bg-color</span> $<span class="hljs-selector-tag">body</span>-bg-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--board-bg-color</span> $board-bg-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--text-color</span> $<span class="hljs-selector-tag">text</span>-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--sec-text-color</span> $sec-<span class="hljs-selector-tag">text</span>-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--post-text-color</span> $post-<span class="hljs-selector-tag">text</span>-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--post-heading-color</span> $post-heading-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--post-link-color</span> $post-link-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--link-hover-color</span> $link-hover-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--link-hover-bg-color</span> $link-hover-bg-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--line-color</span> $<span class="hljs-selector-tag">line</span>-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--navbar-bg-color</span> $navbar-bg-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--navbar-text-color</span> $navbar-<span class="hljs-selector-tag">text</span>-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--subtitle-color</span> $subtitle-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--scrollbar-color</span> $<span class="hljs-attribute">scrollbar-color</span><br>  <span class="hljs-attr">--scrollbar-hover-color</span> $scrollbar-hover-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--button-bg-color</span> $<span class="hljs-selector-tag">button</span>-bg-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--button-hover-bg-color</span> $<span class="hljs-selector-tag">button</span>-hover-bg-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--highlight-bg-color</span> $highlight-bg-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--inlinecode-bg-color</span> $inlinecode-bg-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--fold-title-color</span> $<span class="hljs-selector-tag">text</span>-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--fold-border-color</span> $<span class="hljs-selector-tag">line</span>-<span class="hljs-attribute">color</span><br><br>dark-colors()<br>  <span class="hljs-attr">--body-bg-color</span> $<span class="hljs-selector-tag">body</span>-bg-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--board-bg-color</span> $board-bg-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--text-color</span> $<span class="hljs-selector-tag">text</span>-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--sec-text-color</span> $sec-<span class="hljs-selector-tag">text</span>-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--post-text-color</span> $post-<span class="hljs-selector-tag">text</span>-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--post-heading-color</span> $post-heading-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--post-link-color</span> $post-link-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--link-hover-color</span> $link-hover-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--link-hover-bg-color</span> $link-hover-bg-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--line-color</span> $<span class="hljs-selector-tag">line</span>-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--navbar-bg-color</span> $navbar-bg-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--navbar-text-color</span> $navbar-<span class="hljs-selector-tag">text</span>-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--subtitle-color</span> $subtitle-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--scrollbar-color</span> $<span class="hljs-attribute">scrollbar-color</span>-dark<br>  <span class="hljs-attr">--scrollbar-hover-color</span> $scrollbar-hover-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--button-bg-color</span> $<span class="hljs-selector-tag">button</span>-bg-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--button-hover-bg-color</span> $<span class="hljs-selector-tag">button</span>-hover-bg-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--highlight-bg-color</span> $highlight-bg-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--inlinecode-bg-color</span> $inlinecode-bg-<span class="hljs-attribute">color</span>-dark<br>  <span class="hljs-attr">--fold-title-color</span> $<span class="hljs-selector-tag">text</span>-<span class="hljs-attribute">color</span><br>  <span class="hljs-attr">--fold-border-color</span> $<span class="hljs-selector-tag">line</span>-<span class="hljs-attribute">color</span><br><br>  <span class="hljs-selector-tag">img</span><span class="hljs-selector-pseudo">:not</span>(<span class="hljs-selector-class">.img-loaded</span>,<span class="hljs-selector-class">.img-blur</span>,<span class="hljs-selector-class">.blur-loading</span>)<br>    -webkit-<span class="hljs-attribute">filter</span> brightness(.<span class="hljs-number">9</span>)<br>    <span class="hljs-attribute">filter</span> brightness(.<span class="hljs-number">9</span>)<br>    <span class="hljs-attribute">transition</span> <span class="hljs-attribute">filter</span> .<span class="hljs-number">2s</span> ease-in-out<br><br>  <span class="hljs-selector-class">.navbar</span> <span class="hljs-selector-class">.dropdown-collapse</span>, <span class="hljs-selector-class">.top-nav-collapse</span>, <span class="hljs-selector-class">.navbar-col-show</span><br>    if $navbar-glass-enable<br>      ground-glass($navbar-glass-px, $navbar-bg-<span class="hljs-attribute">color</span>-dark, $navbar-glass-alpha)<br><br>  <span class="hljs-selector-class">.license-box</span><br>    <span class="hljs-attribute">background-color</span> rgba(<span class="hljs-selector-id">#3e4b5e</span>, .<span class="hljs-number">35</span>)<br>    <span class="hljs-attribute">transition</span> <span class="hljs-attribute">background-color</span> .<span class="hljs-number">2s</span> ease-in-out<br><br>  <span class="hljs-selector-class">.gt-comment-admin</span> <span class="hljs-selector-class">.gt-comment-content</span><br>    <span class="hljs-attribute">background-color</span> transparent<br>    <span class="hljs-attribute">transition</span> <span class="hljs-attribute">background-color</span> .<span class="hljs-number">2s</span> ease-in-out<br><br>if (hexo-config(&quot;dark_mode<span class="hljs-selector-class">.enable</span>&quot;))<br>  <span class="hljs-keyword">@media</span> (<span class="hljs-attribute">prefers-color-scheme</span>: dark)<br>    :root<br>      --color-mode <span class="hljs-string">&quot;dark&quot;</span><br><br>    :<span class="hljs-attribute">root</span>:<span class="hljs-keyword">not</span>([data-user-color-scheme])<br>      dark-colors()<br><br>  @media <span class="hljs-keyword">not</span> print<br>    [data-user-color-scheme=<span class="hljs-string">&quot;dark&quot;</span>]<br>      dark-colors()<br><br>  @media print<br>    :root<br>      --color-mode <span class="hljs-string">&quot;light&quot;</span><br><br></code></pre></td></tr></table></figure>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="fold">
+      <div class="fold-title fold-default collapsed" data-toggle="collapse" href="#collapse-e064c6af" role="button" aria-expanded="false" aria-controls="collapse-e064c6af">
+        <div class="fold-arrow">▶</div>source\js\img-lazyload.js
+      </div>
+      <div class="fold-collapse collapse" id="collapse-e064c6af">
+        <div class="fold-content">
+          <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/* global Fluid, CONFIG */</span><br><br><span class="hljs-comment">// (function(window, document) &#123;</span><br><span class="hljs-comment">//   for (const each of document.querySelectorAll(&#x27;img[lazyload]&#x27;)) &#123;</span><br><span class="hljs-comment">//     Fluid.utils.waitElementVisible(each, function() &#123;</span><br><span class="hljs-comment">//       each.removeAttribute(&#x27;srcset&#x27;);</span><br><span class="hljs-comment">//       each.removeAttribute(&#x27;lazyload&#x27;);</span><br><span class="hljs-comment">//     &#125;, CONFIG.lazyload.offset_factor);</span><br><span class="hljs-comment">//   &#125;</span><br><span class="hljs-comment">// &#125;)(window, document);</span><br><br>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-keyword">const</span> className = <span class="hljs-string">`img-box-<span class="hljs-subst">$&#123;<span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">100</span>)&#125;</span>`</span><br><br>  <span class="hljs-title function_">jQuery</span>(<span class="hljs-string">&#x27;head&#x27;</span>).<span class="hljs-title function_">append</span>(<span class="hljs-string">`&lt;style&gt;</span><br><span class="hljs-string">  .<span class="hljs-subst">$&#123;className&#125;</span> &#123;</span><br><span class="hljs-string">    position: relative;</span><br><span class="hljs-string">    margin: 1.5rem auto;</span><br><span class="hljs-string">    overflow: hidden;</span><br><span class="hljs-string">    box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%);</span><br><span class="hljs-string">    border-radius: 4px;</span><br><span class="hljs-string">  &#125;</span><br><span class="hljs-string">  .<span class="hljs-subst">$&#123;className&#125;</span> .img-blur &#123;</span><br><span class="hljs-string">    filter: blur(32px);</span><br><span class="hljs-string">    transition: filter 0.7s;</span><br><span class="hljs-string">    opacity: 0;</span><br><span class="hljs-string">  &#125;</span><br><span class="hljs-string">  .<span class="hljs-subst">$&#123;className&#125;</span> .img-loaded &#123;</span><br><span class="hljs-string">    filter: none;</span><br><span class="hljs-string">    opacity: 1;</span><br><span class="hljs-string">  &#125;</span><br><span class="hljs-string">  .<span class="hljs-subst">$&#123;className&#125;</span> img &#123;</span><br><span class="hljs-string">    border-radius: 4px;</span><br><span class="hljs-string">  &#125;</span><br><span class="hljs-string">  .<span class="hljs-subst">$&#123;className&#125;</span> .blur-loading &#123;</span><br><span class="hljs-string">    position: absolute;</span><br><span class="hljs-string">    width: 100%;</span><br><span class="hljs-string">    height: 100%;</span><br><span class="hljs-string">    left: 0;</span><br><span class="hljs-string">    top: 0;</span><br><span class="hljs-string">    filter: blur(32px);</span><br><span class="hljs-string">    object-fit: cover !important;</span><br><span class="hljs-string">  &#125;</span><br><span class="hljs-string">  &lt;/style&gt;`</span>)<br>  <span class="hljs-title function_">jQuery</span>(<span class="hljs-string">&#x27;img[lazyload]&#x27;</span>).<span class="hljs-title function_">each</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> elem = $(<span class="hljs-variable language_">this</span>)<br>    <span class="hljs-keyword">const</span> src = elem.<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;src&#x27;</span>)<br>    <span class="hljs-keyword">const</span> mini = src.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\.[^.]+$/</span>, <span class="hljs-string">&#x27;_proc.jpg&#x27;</span>)<br>    <span class="hljs-keyword">const</span> style = elem.<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;style&#x27;</span>)<br>    elem.<span class="hljs-title function_">replaceWith</span>(<span class="hljs-string">`&lt;div class=&quot;<span class="hljs-subst">$&#123;className&#125;</span>&quot; style=&quot;<span class="hljs-subst">$&#123;style&#125;</span>&quot;&gt;</span><br><span class="hljs-string">      &lt;img class=&quot;img-blur&quot; data-src=&quot;<span class="hljs-subst">$&#123;src&#125;</span>&quot; loading=&quot;lazy&quot;&gt;</span><br><span class="hljs-string">      &lt;img class=&quot;blur-loading&quot; src=&quot;<span class="hljs-subst">$&#123;mini&#125;</span>&quot;&gt;</span><br><span class="hljs-string">    &lt;/div&gt;`</span>)<br>  &#125;)<br>  <span class="hljs-title function_">jQuery</span>(<span class="hljs-string">&#x27;.img-blur&#x27;</span>).<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;load&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> elem = $(<span class="hljs-variable language_">this</span>)<br>    elem.<span class="hljs-title function_">addClass</span>(<span class="hljs-string">&#x27;img-loaded&#x27;</span>)<br>    elem.<span class="hljs-title function_">closest</span>(<span class="hljs-string">`.<span class="hljs-subst">$&#123;className&#125;</span>`</span>).<span class="hljs-title function_">find</span>(<span class="hljs-string">&#x27;.blur-loading&#x27;</span>).<span class="hljs-title function_">remove</span>()<br>  &#125;)<br>  <span class="hljs-title function_">jQuery</span>(<span class="hljs-string">&#x27;.blur-loading&#x27;</span>).<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;load&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> elem = $(<span class="hljs-variable language_">this</span>)<br>    <span class="hljs-keyword">const</span> img = elem.<span class="hljs-title function_">closest</span>(<span class="hljs-string">`.<span class="hljs-subst">$&#123;className&#125;</span>`</span>).<span class="hljs-title function_">find</span>(<span class="hljs-string">&#x27;.img-blur&#x27;</span>)<br>    img.<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;src&#x27;</span>, img.<span class="hljs-title function_">data</span>(<span class="hljs-string">&#x27;src&#x27;</span>))<br>  &#125;)<br>&#125;)()<br></code></pre></td></tr></table></figure>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="fold">
+      <div class="fold-title fold-default collapsed" data-toggle="collapse" href="#collapse-5b75660a" role="button" aria-expanded="false" aria-controls="collapse-5b75660a">
+        <div class="fold-arrow">▶</div>source\js\plugins.js
+      </div>
+      <div class="fold-collapse collapse" id="collapse-5b75660a">
+        <div class="fold-content">
+          <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/* global Fluid, CONFIG */</span><br><br><span class="hljs-title class_">HTMLElement</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">wrap</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">wrapper</span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">parentNode</span>.<span class="hljs-title function_">insertBefore</span>(wrapper, <span class="hljs-variable language_">this</span>);<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">parentNode</span>.<span class="hljs-title function_">removeChild</span>(<span class="hljs-variable language_">this</span>);<br>  wrapper.<span class="hljs-title function_">appendChild</span>(<span class="hljs-variable language_">this</span>);<br>&#125;;<br><br><span class="hljs-title class_">Fluid</span>.<span class="hljs-property">plugins</span> = &#123;<br><br>  <span class="hljs-attr">typing</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">text</span>) &#123;<br>    <span class="hljs-keyword">if</span> (!(<span class="hljs-string">&#x27;Typed&#x27;</span> <span class="hljs-keyword">in</span> <span class="hljs-variable language_">window</span>)) &#123; <span class="hljs-keyword">return</span>; &#125;<br><br>    <span class="hljs-keyword">var</span> typed = <span class="hljs-keyword">new</span> <span class="hljs-variable language_">window</span>.<span class="hljs-title class_">Typed</span>(<span class="hljs-string">&#x27;#subtitle&#x27;</span>, &#123;<br>      <span class="hljs-attr">strings</span>: [<br>        <span class="hljs-string">&#x27;  &#x27;</span>,<br>        text<br>      ],<br>      <span class="hljs-attr">cursorChar</span>: <span class="hljs-variable constant_">CONFIG</span>.<span class="hljs-property">typing</span>.<span class="hljs-property">cursorChar</span>,<br>      typeSpeed : <span class="hljs-variable constant_">CONFIG</span>.<span class="hljs-property">typing</span>.<span class="hljs-property">typeSpeed</span>,<br>      loop      : <span class="hljs-variable constant_">CONFIG</span>.<span class="hljs-property">typing</span>.<span class="hljs-property">loop</span><br>    &#125;);<br>    typed.<span class="hljs-title function_">stop</span>();<br>    <span class="hljs-keyword">var</span> subtitle = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;subtitle&#x27;</span>);<br>    <span class="hljs-keyword">if</span> (subtitle) &#123;<br>      subtitle.<span class="hljs-property">innerText</span> = <span class="hljs-string">&#x27;&#x27;</span>;<br>    &#125;<br>    <span class="hljs-title function_">jQuery</span>(<span class="hljs-variable language_">document</span>).<span class="hljs-title function_">ready</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>      typed.<span class="hljs-title function_">start</span>();<br>    &#125;);<br>  &#125;,<br><br>  <span class="hljs-attr">fancyBox</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">selector</span>) &#123;<br>    <span class="hljs-keyword">if</span> (!<span class="hljs-variable constant_">CONFIG</span>.<span class="hljs-property">image_zoom</span>.<span class="hljs-property">enable</span> || !(<span class="hljs-string">&#x27;fancybox&#x27;</span> <span class="hljs-keyword">in</span> jQuery)) &#123; <span class="hljs-keyword">return</span>; &#125;<br><br>    <span class="hljs-title function_">jQuery</span>(selector || <span class="hljs-string">&#x27;.markdown-body :not(a) &gt; img:not(.blur-loading), .markdown-body &gt; img&#x27;</span>).<span class="hljs-title function_">each</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">var</span> $image = <span class="hljs-title function_">jQuery</span>(<span class="hljs-variable language_">this</span>);<br>      <span class="hljs-keyword">var</span> imageUrl = $image.<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;data-src&#x27;</span>) || $image.<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;src&#x27;</span>) || <span class="hljs-string">&#x27;&#x27;</span>;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-variable constant_">CONFIG</span>.<span class="hljs-property">image_zoom</span>.<span class="hljs-property">img_url_replace</span>) &#123;<br>        <span class="hljs-keyword">var</span> rep = <span class="hljs-variable constant_">CONFIG</span>.<span class="hljs-property">image_zoom</span>.<span class="hljs-property">img_url_replace</span>;<br>        <span class="hljs-keyword">var</span> r1 = rep[<span class="hljs-number">0</span>] || <span class="hljs-string">&#x27;&#x27;</span>;<br>        <span class="hljs-keyword">var</span> r2 = rep[<span class="hljs-number">1</span>] || <span class="hljs-string">&#x27;&#x27;</span>;<br>        <span class="hljs-keyword">if</span> (r1) &#123;<br>          <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/^re:/</span>.<span class="hljs-title function_">test</span>(r1)) &#123;<br>            r1 = r1.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/^re:/</span>, <span class="hljs-string">&#x27;&#x27;</span>);<br>            <span class="hljs-keyword">var</span> reg = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>(r1, <span class="hljs-string">&#x27;gi&#x27;</span>);<br>            imageUrl = imageUrl.<span class="hljs-title function_">replace</span>(reg, r2);<br>          &#125; <span class="hljs-keyword">else</span> &#123;<br>            imageUrl = imageUrl.<span class="hljs-title function_">replace</span>(r1, r2);<br>          &#125;<br>        &#125;<br>      &#125;<br>      <span class="hljs-keyword">var</span> $imageWrap = $image.<span class="hljs-title function_">wrap</span>(<span class="hljs-string">`</span><br><span class="hljs-string">        &lt;a class=&quot;fancybox fancybox.image&quot; href=&quot;<span class="hljs-subst">$&#123;imageUrl&#125;</span>&quot;</span><br><span class="hljs-string">          itemscope itemtype=&quot;http://schema.org/ImageObject&quot; itemprop=&quot;url&quot;&gt;&lt;/a&gt;`</span><br>      ).<span class="hljs-title function_">parent</span>(<span class="hljs-string">&#x27;a&#x27;</span>);<br>      <span class="hljs-keyword">if</span> ($imageWrap.<span class="hljs-property">length</span> !== <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">if</span> ($image.<span class="hljs-title function_">is</span>(<span class="hljs-string">&#x27;.group-image-container img&#x27;</span>)) &#123;<br>          $imageWrap.<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;data-fancybox&#x27;</span>, <span class="hljs-string">&#x27;group&#x27;</span>).<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;rel&#x27;</span>, <span class="hljs-string">&#x27;group&#x27;</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>          $imageWrap.<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;data-fancybox&#x27;</span>, <span class="hljs-string">&#x27;default&#x27;</span>).<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;rel&#x27;</span>, <span class="hljs-string">&#x27;default&#x27;</span>);<br>        &#125;<br><br>        <span class="hljs-keyword">var</span> imageTitle = $image.<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;title&#x27;</span>) || $image.<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;alt&#x27;</span>);<br>        <span class="hljs-keyword">if</span> (imageTitle) &#123;<br>          $imageWrap.<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;title&#x27;</span>, imageTitle).<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;data-caption&#x27;</span>, imageTitle);<br>        &#125;<br>      &#125;<br>    &#125;);<br><br>    jQuery.<span class="hljs-property">fancybox</span>.<span class="hljs-property">defaults</span>.<span class="hljs-property">hash</span> = <span class="hljs-literal">false</span>;<br>    <span class="hljs-title function_">jQuery</span>(<span class="hljs-string">&#x27;.fancybox&#x27;</span>).<span class="hljs-title function_">fancybox</span>(&#123;<br>      loop   : <span class="hljs-literal">true</span>,<br>      <span class="hljs-attr">helpers</span>: &#123;<br>        <span class="hljs-attr">overlay</span>: &#123;<br>          <span class="hljs-attr">locked</span>: <span class="hljs-literal">false</span><br>        &#125;<br>      &#125;<br>    &#125;);<br>  &#125;,<br><br>  <span class="hljs-attr">imageCaption</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">selector</span>) &#123;<br>    <span class="hljs-keyword">if</span> (!<span class="hljs-variable constant_">CONFIG</span>.<span class="hljs-property">image_caption</span>.<span class="hljs-property">enable</span>) &#123; <span class="hljs-keyword">return</span>; &#125;<br><br>    <span class="hljs-title function_">jQuery</span>(selector || <span class="hljs-string">`.markdown-body &gt; p &gt; img, .markdown-body &gt; figure &gt; img,</span><br><span class="hljs-string">      .markdown-body &gt; p &gt; a.fancybox, .markdown-body &gt; figure &gt; a.fancybox`</span>).<span class="hljs-title function_">each</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">var</span> $target = <span class="hljs-title function_">jQuery</span>(<span class="hljs-variable language_">this</span>);<br>      <span class="hljs-keyword">var</span> $figcaption = $target.<span class="hljs-title function_">next</span>(<span class="hljs-string">&#x27;figcaption&#x27;</span>);<br>      <span class="hljs-keyword">if</span> ($figcaption.<span class="hljs-property">length</span> !== <span class="hljs-number">0</span>) &#123;<br>        $figcaption.<span class="hljs-title function_">addClass</span>(<span class="hljs-string">&#x27;image-caption&#x27;</span>);<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">var</span> imageTitle = $target.<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;title&#x27;</span>) || $target.<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;alt&#x27;</span>);<br>        <span class="hljs-keyword">if</span> (imageTitle) &#123;<br>          $target.<span class="hljs-title function_">after</span>(<span class="hljs-string">`&lt;figcaption aria-hidden=&quot;true&quot; class=&quot;image-caption&quot;&gt;<span class="hljs-subst">$&#123;imageTitle&#125;</span>&lt;/figcaption&gt;`</span>);<br>        &#125;<br>      &#125;<br>    &#125;);<br>  &#125;,<br><br>  <span class="hljs-title function_">codeWidget</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">var</span> enableLang = <span class="hljs-variable constant_">CONFIG</span>.<span class="hljs-property">code_language</span>.<span class="hljs-property">enable</span> &amp;&amp; <span class="hljs-variable constant_">CONFIG</span>.<span class="hljs-property">code_language</span>.<span class="hljs-property">default</span>;<br>    <span class="hljs-keyword">var</span> enableCopy = <span class="hljs-variable constant_">CONFIG</span>.<span class="hljs-property">copy_btn</span> &amp;&amp; <span class="hljs-string">&#x27;ClipboardJS&#x27;</span> <span class="hljs-keyword">in</span> <span class="hljs-variable language_">window</span>;<br>    <span class="hljs-keyword">if</span> (!enableLang &amp;&amp; !enableCopy) &#123;<br>      <span class="hljs-keyword">return</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">getBgClass</span>(<span class="hljs-params">ele</span>) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-title class_">Fluid</span>.<span class="hljs-property">utils</span>.<span class="hljs-title function_">getBackgroundLightness</span>(ele) &gt;= <span class="hljs-number">0</span> ? <span class="hljs-string">&#x27;code-widget-light&#x27;</span> : <span class="hljs-string">&#x27;code-widget-dark&#x27;</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">var</span> copyTmpl = <span class="hljs-string">&#x27;&#x27;</span>;<br>    copyTmpl += <span class="hljs-string">&#x27;&lt;div class=&quot;code-widget&quot;&gt;&#x27;</span>;<br>    copyTmpl += <span class="hljs-string">&#x27;LANG&#x27;</span>;<br>    copyTmpl += <span class="hljs-string">&#x27;&lt;/div&gt;&#x27;</span>;<br>    <span class="hljs-title function_">jQuery</span>(<span class="hljs-string">&#x27;.markdown-body pre&#x27;</span>).<span class="hljs-title function_">each</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">var</span> $pre = <span class="hljs-title function_">jQuery</span>(<span class="hljs-variable language_">this</span>);<br>      <span class="hljs-keyword">if</span> ($pre.<span class="hljs-title function_">find</span>(<span class="hljs-string">&#x27;code.mermaid&#x27;</span>).<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">return</span>;<br>      &#125;<br>      <span class="hljs-keyword">if</span> ($pre.<span class="hljs-title function_">find</span>(<span class="hljs-string">&#x27;span.line&#x27;</span>).<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">return</span>;<br>      &#125;<br><br>      <span class="hljs-keyword">var</span> lang = <span class="hljs-string">&#x27;&#x27;</span>;<br><br>      <span class="hljs-keyword">if</span> (enableLang) &#123;<br>        lang = <span class="hljs-variable constant_">CONFIG</span>.<span class="hljs-property">code_language</span>.<span class="hljs-property">default</span>;<br>        <span class="hljs-keyword">if</span> ($pre[<span class="hljs-number">0</span>].<span class="hljs-property">children</span>.<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span> &amp;&amp; $pre[<span class="hljs-number">0</span>].<span class="hljs-property">children</span>[<span class="hljs-number">0</span>].<span class="hljs-property">classList</span>.<span class="hljs-property">length</span> &gt;= <span class="hljs-number">2</span> &amp;&amp; $pre.<span class="hljs-title function_">children</span>().<span class="hljs-title function_">hasClass</span>(<span class="hljs-string">&#x27;hljs&#x27;</span>)) &#123;<br>          lang = $pre[<span class="hljs-number">0</span>].<span class="hljs-property">children</span>[<span class="hljs-number">0</span>].<span class="hljs-property">classList</span>[<span class="hljs-number">1</span>];<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ($pre[<span class="hljs-number">0</span>].<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;data-language&#x27;</span>)) &#123;<br>          lang = $pre[<span class="hljs-number">0</span>].<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;data-language&#x27;</span>);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ($pre.<span class="hljs-title function_">parent</span>().<span class="hljs-title function_">hasClass</span>(<span class="hljs-string">&#x27;sourceCode&#x27;</span>) &amp;&amp; $pre[<span class="hljs-number">0</span>].<span class="hljs-property">children</span>.<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span> &amp;&amp; $pre[<span class="hljs-number">0</span>].<span class="hljs-property">children</span>[<span class="hljs-number">0</span>].<span class="hljs-property">classList</span>.<span class="hljs-property">length</span> &gt;= <span class="hljs-number">2</span>) &#123;<br>          lang = $pre[<span class="hljs-number">0</span>].<span class="hljs-property">children</span>[<span class="hljs-number">0</span>].<span class="hljs-property">classList</span>[<span class="hljs-number">1</span>];<br>          $pre.<span class="hljs-title function_">parent</span>().<span class="hljs-title function_">addClass</span>(<span class="hljs-string">&#x27;code-wrapper&#x27;</span>);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ($pre.<span class="hljs-title function_">parent</span>().<span class="hljs-title function_">hasClass</span>(<span class="hljs-string">&#x27;markdown-body&#x27;</span>) &amp;&amp; $pre[<span class="hljs-number">0</span>].<span class="hljs-property">classList</span>.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) &#123;<br>          $pre.<span class="hljs-title function_">wrap</span>(<span class="hljs-string">&#x27;&lt;div class=&quot;code-wrapper&quot;&gt;&lt;/div&gt;&#x27;</span>);<br>        &#125;<br>        lang = lang.<span class="hljs-title function_">toUpperCase</span>().<span class="hljs-title function_">replace</span>(<span class="hljs-string">&#x27;NONE&#x27;</span>, <span class="hljs-variable constant_">CONFIG</span>.<span class="hljs-property">code_language</span>.<span class="hljs-property">default</span>);<br>      &#125;<br>      $pre.<span class="hljs-title function_">append</span>(copyTmpl.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&#x27;LANG&#x27;</span>, lang).<span class="hljs-title function_">replace</span>(<span class="hljs-string">&#x27;code-widget&quot;&gt;&#x27;</span>,<br>        <span class="hljs-title function_">getBgClass</span>($pre[<span class="hljs-number">0</span>]) + (enableCopy ? <span class="hljs-string">&#x27; code-widget copy-btn&quot; data-clipboard-snippet&gt;&lt;i class=&quot;iconfont icon-copy&quot;&gt;&lt;/i&gt;&#x27;</span> : <span class="hljs-string">&#x27; code-widget&quot;&gt;&#x27;</span>)));<br><br>      <span class="hljs-keyword">if</span> (enableCopy) &#123;<br>        <span class="hljs-keyword">var</span> clipboard = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClipboardJS</span>(<span class="hljs-string">&#x27;.copy-btn&#x27;</span>, &#123;<br>          <span class="hljs-attr">target</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">trigger</span>) &#123;<br>            <span class="hljs-keyword">var</span> nodes = trigger.<span class="hljs-property">parentNode</span>.<span class="hljs-property">childNodes</span>;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; nodes.<span class="hljs-property">length</span>; i++) &#123;<br>              <span class="hljs-keyword">if</span> (nodes[i].<span class="hljs-property">tagName</span> === <span class="hljs-string">&#x27;CODE&#x27;</span>) &#123;<br>                <span class="hljs-keyword">return</span> nodes[i];<br>              &#125;<br>            &#125;<br>          &#125;<br>        &#125;);<br>        clipboard.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;success&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) &#123;<br>          e.<span class="hljs-title function_">clearSelection</span>();<br>          e.<span class="hljs-property">trigger</span>.<span class="hljs-property">innerHTML</span> = e.<span class="hljs-property">trigger</span>.<span class="hljs-property">innerHTML</span>.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&#x27;icon-copy&#x27;</span>, <span class="hljs-string">&#x27;icon-success&#x27;</span>);<br>          <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>            e.<span class="hljs-property">trigger</span>.<span class="hljs-property">innerHTML</span> = e.<span class="hljs-property">trigger</span>.<span class="hljs-property">innerHTML</span>.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&#x27;icon-success&#x27;</span>, <span class="hljs-string">&#x27;icon-copy&#x27;</span>);<br>          &#125;, <span class="hljs-number">2000</span>);<br>        &#125;);<br>      &#125;<br>    &#125;);<br>  &#125;<br>&#125;;<br><br></code></pre></td></tr></table></figure>
+        </div>
+      </div>
+    </div>
+
+<p>但是，这个改完之后想让懒加载正常工作，还是需要做一些额外的工作的。</p>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><p>上面也说了，每个图片都要有自己的占位图，占位图的链接均为原图的链接在扩展名前加入 <code>_proc</code> 且格式均为 <code>jpg</code>。</p>
+<p>为什么会这样呢？因为之前占位图都是自己手动用 <a target="_blank" rel="noopener" href="https://github.com/sylikc/jpegview">JPEGView</a> 修改的，修改后的文件名默认是这种格式。</p>
+<p>后来觉得自己手动改的大小还是太保守了一点，还需要更小的体积，这时候再重新手动改一遍就太懒了，改不动。</p>
+<p>于是找了 ChatGPT 帮我搓了个批处理，调用 <code>ffmpeg</code> 来帮我干活。</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bat">@<span class="hljs-built_in">echo</span> off<br><span class="hljs-built_in">setlocal</span> enabledelayedexpansion<br><br><span class="hljs-built_in">set</span> &quot;inputFolder=<span class="hljs-variable">%cd%</span>&quot;<br><span class="hljs-built_in">set</span> &quot;outputFolder=<span class="hljs-variable">%cd%</span>&quot;<br><br><span class="hljs-keyword">for</span> /f &quot;tokens=*&quot; <span class="hljs-variable">%%F</span> <span class="hljs-keyword">in</span> (&#x27;<span class="hljs-built_in">dir</span> /b /o-d /tc &quot;<span class="hljs-variable">%inputFolder%</span>\*.png&quot; &quot;<span class="hljs-variable">%inputFolder%</span>\*.jpg&quot;&#x27;) <span class="hljs-keyword">do</span> (<br>    <span class="hljs-built_in">set</span> &quot;inputFile=<span class="hljs-variable">%inputFolder%</span>\<span class="hljs-variable">%%F</span>&quot;<br>    <span class="hljs-built_in">set</span> &quot;fileName=<span class="hljs-variable">%%~</span>nF&quot;<br><br>    <span class="hljs-built_in">echo</span> <span class="hljs-variable">!fileName!</span> | <span class="hljs-built_in">findstr</span> /i /c:&quot;banner&quot; /c:&quot;index&quot; /c:&quot;proc&quot; &gt;<span class="hljs-built_in">nul</span> &amp;&amp; (<br>        <span class="hljs-built_in">echo</span> Skipping: <span class="hljs-variable">!inputFile!</span> - File name contains &quot;banner&quot;, &quot;index&quot; or &quot;proc&quot;<br>    ) || (<br>        <span class="hljs-built_in">set</span> &quot;outputFile=<span class="hljs-variable">!outputFolder!</span>\<span class="hljs-variable">!fileName!</span>_proc.jpg&quot;<br>        ffmpeg -i &quot;<span class="hljs-variable">!inputFile!</span>&quot; -vf &quot;scale=<span class="hljs-number">17</span>:-<span class="hljs-number">1</span>&quot; -q:v <span class="hljs-number">2</span> -compression_level <span class="hljs-number">50</span> &quot;<span class="hljs-variable">!outputFile!</span>&quot; -y<br>        <span class="hljs-built_in">echo</span> Processed: <span class="hljs-variable">!inputFile!</span> -^&gt; <span class="hljs-variable">!outputFile!</span><br>    )<br>)<br></code></pre></td></tr></table></figure>
+
+<p>虽然逻辑上还有些问题，但是能正常工作就不管它了。</p>
+<p>需要环境变量中有 <code>ffmpeg</code> 才能使用，会正常跳过（实际用下来好像并不会跳过）一些不需要处理的图片。</p>
+<p>把批处理往各个图片文件夹里都跑了一遍，新的占位图就全部生成完毕了。</p>
+<h1 id="再偷懒一点"><a href="#再偷懒一点" class="headerlink" title="再偷懒一点"></a>再偷懒一点</h1><p>现在还有个问题，每次 Fluid 更新后我需要把修改过的文件手动再覆盖进去。</p>
+<p>这个修改不具有普适性，也不好往 Fluid 那边提 PR。</p>
+<p>于是想了想办法，用 GitHub Ation 来帮我自动处理，处理完后再发布个 Release，这样还有邮件提醒，不用隔三岔五去瞅 Fluid 那边更新了没。</p>
+<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/huaxianyan/custom_hexo_fluid">https://github.com/huaxianyan/custom_hexo_fluid</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%98%E8%85%BE/" class="category-chain-item">折腾</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8A%98%E8%85%BE/" class="print-no-link">#折腾</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/3pYN3gXxJqMq9a.html" title="未上黄山的黄山之旅">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">未上黄山的黄山之旅</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/3pYN3gXU6vVKvQ.html" title="更加偷懒的 SSH 技巧">
+                        <span class="hidden-mobile">更加偷懒的 SSH 技巧</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://static.neko7ina.com/twikoo/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://twikoo.neko7ina.com/","region":"ap-shanghai","path":"window.location.pathname","prismCdn":"https://static.neko7ina.com/prism"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      苏ICP备19071122号-1
+    </a>
+  </span>
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+
+<script  src="https://static.neko7ina.com/jquery/jquery.min.js" ></script>
+<script  src="https://static.neko7ina.com/twitter-bootstrap/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://static.neko7ina.com/typed.js/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/tocbot/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://static.neko7ina.com/clipboard.js/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/anchor-js/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/fancybox/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

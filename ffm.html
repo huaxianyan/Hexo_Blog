@@ -1,0 +1,750 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://image.neko7ina.com/base/favicon.png">
+  <link rel="icon" href="https://image.neko7ina.com/base/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="NeKo7inA">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="月初买了个 iPhone SE，将辣鸡软件全部转移到 iOS 上之后，Android 的使用体验瞬间上升，不用忍受辣鸡国产软件的涂毒，还省了去镇压调教的功夫，续航也大幅提升，快哉快哉。 但是日常用的国产软件还有 QQ 和微信这两大流氓。微信还好，Play Store 上的版本只要关闭了后台就可以使用 FCM 来接收通知（虽然实现方式还是有点不老实），但是 QQ 就真没什么辙。 直到我找到了这个。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 FCM 来推送 QQ 消息">
+<meta property="og:url" content="https://neko7ina.com/ffm.html">
+<meta property="og:site_name" content="七味茶盏">
+<meta property="og:description" content="月初买了个 iPhone SE，将辣鸡软件全部转移到 iOS 上之后，Android 的使用体验瞬间上升，不用忍受辣鸡国产软件的涂毒，还省了去镇压调教的功夫，续航也大幅提升，快哉快哉。 但是日常用的国产软件还有 QQ 和微信这两大流氓。微信还好，Play Store 上的版本只要关闭了后台就可以使用 FCM 来接收通知（虽然实现方式还是有点不老实），但是 QQ 就真没什么辙。 直到我找到了这个。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.neko7ina.com/20180731/8.png">
+<meta property="article:published_time" content="2018-07-31T13:09:37.000Z">
+<meta property="article:modified_time" content="2026-03-15T08:04:17.032Z">
+<meta property="article:author" content="NeKo7inA">
+<meta property="article:tag" content="折腾">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="FFM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://image.neko7ina.com/20180731/8.png">
+  
+  
+  
+  <title>用 FCM 来推送 QQ 消息 - 七味茶盏</title>
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/twitter-bootstrap/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/github-markdown-css/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/hint.css/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/fancybox/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="https://static.neko7ina.com/iconfont/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"neko7ina.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":77,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://image.neko7ina.com/base/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-XKLHJ9PV58"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-XKLHJ9PV58", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-XKLHJ9PV58');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 47vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>七味茶盏</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-clock-fill"></i>
+                <span>时间线</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/trophys/" target="_self">
+                <i class="iconfont2 icon-playstation-fill"></i>
+                <span>奖杯</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://image.neko7ina.com/base/index.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="用 FCM 来推送 QQ 消息"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2018-07-31 21:09" pubdate>
+          2018 年 7 月 31 日 星期二 晚上 9:09
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">用 FCM 来推送 QQ 消息</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>月初买了个 iPhone SE，将辣鸡软件全部转移到 iOS 上之后，Android 的使用体验瞬间上升，不用忍受辣鸡国产软件的涂毒，还省了去镇压调教的功夫，续航也大幅提升，快哉快哉。</p>
+<p>但是日常用的国产软件还有 QQ 和微信这两大流氓。微信还好，Play Store 上的版本只要关闭了后台就可以使用 FCM 来接收通知（虽然实现方式还是有点不老实），但是 QQ 就真没什么辙。</p>
+<p>直到我找到了这个。</p>
+<span id="more"></span>
+
+<p><a target="_blank" rel="noopener" href="https://github.com/RikkaApps/FCM-for-Mojo">FCM for Mojo</a>，简称 FFM，由 Rikka 酱开发，借助 <a target="_blank" rel="noopener" href="https://github.com/sjdy521/Mojo-Webqq">Mojo-Webqq</a> 实现将 QQ 消息通过 FCM 推送至 Android 设备。 有了这个，就可以从 FCM 来接收 QQ 消息了。</p>
+<div class="note note-info">
+            <p><strong>2018.12.19 更新</strong>：WebQQ 停止服务。</p><p><strong>2018.10.30 更新</strong>：增加可选工作，提供 HTTP 基本认证、HTTPS 及 Nginx 配置部分内容。</p>
+          </div>
+
+<div class="note note-info">
+            <p><strong>&lt;2018.12.19 更新&gt;</strong></p><p>WebQQ 停止服务。</p>
+          </div>
+
+<blockquote>
+<p><strong>重要通知：WebQQ将在2019年1月1日停止服务，项目目前已停止维护，感谢大家四年来一路陪伴</strong></p>
+</blockquote>
+<p>就到此为止了，留一张做最后的纪念，感谢开发者给我们带来了一段美好时光。</p>
+<p><img src="https://image.neko7ina.com/20180731/8.png" style="aspect-ratio: 1080 / 2160;width:37%;max-width:1080px" srcset="https://image.neko7ina.com/20180731/8_proc.jpg" lazyload loading="lazy" width="37%"></p>
+
+</br>
+
+<h1 id="配置服务端"><a href="#配置服务端" class="headerlink" title="配置服务端"></a>配置服务端</h1><h2 id="安装相关依赖"><a href="#安装相关依赖" class="headerlink" title="安装相关依赖"></a>安装相关依赖</h2><p>笔者所使用的系统是 Ubuntu 16.04 LTS。</p>
+<p>git：使用包管理器来安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt-get install git<br></code></pre></td></tr></table></figure>
+<p>Node.js：版本看自己喜好选择。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -sL https://deb.nodesource.com/setup_10.x | <span class="hljs-built_in">sudo</span> -E bash -<br><span class="hljs-built_in">sudo</span> apt-get install -y nodejs<br></code></pre></td></tr></table></figure>
+
+<p>Mojo-Webqq：项目推荐使用 <a target="_blank" rel="noopener" href="https://metacpan.org/pod/distribution/App-cpanminus/bin/cpanm">cpanm</a>  在线安装或升级模块。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -kL https://cpanmin.us | perl - App::cpanminus<br>cpanm Mojo::Webqq<br>cpanm Webqq::Encryption<br></code></pre></td></tr></table></figure>
+
+<p>如要更新只需再执行 <code>cpanm Mojo::Webqq</code> 即可。</p>
+<h2 id="安装-FCM-for-Mojo-服务端"><a href="#安装-FCM-for-Mojo-服务端" class="headerlink" title="安装 FCM for Mojo 服务端"></a>安装 FCM for Mojo 服务端</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span><br>git <span class="hljs-built_in">clone</span> https://github.com/RikkaApps/FCM-for-Mojo-Server.git<br><span class="hljs-built_in">cd</span> FCM-for-Mojo-Server<br><span class="hljs-built_in">cp</span> config.example.js config.js<br>npm install<br></code></pre></td></tr></table></figure>
+
+<p>如要更新，关闭当前正在运行的 FFM 并进入 <code>FCM-for-Mojo-Server</code> 目录执行以下命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git pull<br>npm install<br></code></pre></td></tr></table></figure>
+
+<h1 id="配置客户端"><a href="#配置客户端" class="headerlink" title="配置客户端"></a>配置客户端</h1><p>前往 Play Store 下载安装 <a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=moe.shizuku.fcmformojo">Android 客户端</a>。</p>
+<p><img src="https://image.neko7ina.com/20180731/1.png" style="aspect-ratio: 1440 / 2560;width:37%;max-width:1440px" srcset="https://image.neko7ina.com/20180731/1_proc.jpg" lazyload loading="lazy" width="37%"></p>
+
+<p>点击 <code>服务器设置</code>，在 <code>服务器 URL</code> 处填写服务端地址，默认端口 <code>5005</code>，写成 <code>http://w.x.y.z:5005/</code> 形式即可。</p>
+<p><img src="https://image.neko7ina.com/20180731/2.png" style="aspect-ratio: 810 / 1440;width:37%;max-width:810px" srcset="https://image.neko7ina.com/20180731/2_proc.jpg" lazyload loading="lazy" width="37%"></p>
+
+<p>点击 <code>管理设备</code> 点击加号将当前设备加入管理列表，再点击右侧上传云端保存。</p>
+<p><img src="https://image.neko7ina.com/20180731/3.png" style="aspect-ratio: 1440 / 2560;width:37%;max-width:1440px" srcset="https://image.neko7ina.com/20180731/3_proc.jpg" lazyload loading="lazy" width="37%"></p>
+
+<p>返回主界面点击 <code>账号设置</code> 将自己的账号密码填入其中。账号密码登录现已失效，但是如要实现某些特性还要填写账号密码，详情请看 <a target="_blank" rel="noopener" href="https://github.com/sjdy521/Mojo-Webqq/issues/183">这里</a>。</p>
+<p>FFM 服务端默认使用明文保存密码，如果介意上面的链接中也提及了解决办法。</p>
+<p><img src="https://image.neko7ina.com/20180731/4.png" style="aspect-ratio: 809 / 1440;width:37%;max-width:809px" srcset="https://image.neko7ina.com/20180731/4_proc.jpg" lazyload loading="lazy" width="37%"></p>
+
+<p>最后进入 <code>通知设置</code> 做最后修改。<code>获取前台应用方式</code> 如没有 root，则选择 <code>使用情况访问</code>，否则可以搭配 <a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=moe.shizuku.privileged.api&hl=zh">Shizuku Manager</a> 的 root 模式选择 <code>Shizuku</code> 使用。</p>
+<center><img src="https://image.neko7ina.com/20180731/5.png" style="aspect-ratio: 1440 / 2560;width:37%;max-width:1440px" srcset="https://image.neko7ina.com/20180731/5_proc.jpg" lazyload loading="lazy" width="37%"></center>
+
+
+
+<h1 id="测试使用"><a href="#测试使用" class="headerlink" title="测试使用"></a>测试使用</h1><p>服务端进入 <code>FCM-for-Mojo-Server</code> 目录，启动服务端。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm start<br></code></pre></td></tr></table></figure>
+
+<p>如设置无误，手机上会收到通知并自动从服务端下载登录二维码，打开 QQ 选择扫码，点击相册从手机中选择刚下载的二维码，确认登录即可完成。</p>
+<p><img src="https://image.neko7ina.com/20180731/6.png" style="aspect-ratio: 1440 / 2560;width:37%;max-width:1440px" srcset="https://image.neko7ina.com/20180731/6_proc.jpg" lazyload loading="lazy" width="37%"></p>
+
+<p>现在就可以通过 FCM 来接收你的 QQ 消息了，顺便去系统设置中把 QQ 的后台给关闭掉。</p>
+<h1 id="作为服务启动"><a href="#作为服务启动" class="headerlink" title="作为服务启动"></a>作为服务启动</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim /lib/systemd/system/ffm.service<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[Unit]</span><br><span class="hljs-attr">Description</span>=a server for FCM-for-Mojo-Server<br><span class="hljs-attr">After</span>=network.target<br><br><span class="hljs-section">[Service]</span><br><span class="hljs-attr">Type</span>=simple<br><span class="hljs-attr">User</span>=root<br><span class="hljs-attr">WorkingDirectory</span>=/root/FCM-for-Mojo-Server<br><span class="hljs-attr">ExecStart</span>=/usr/bin/npm start<br><span class="hljs-attr">PrivateTmp</span>=<span class="hljs-literal">true</span><br><span class="hljs-attr">Restart</span>=<span class="hljs-literal">on</span>-failure<br><br><span class="hljs-section">[Install]</span><br><span class="hljs-attr">WantedBy</span>=multi-user.target<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">systemctl <span class="hljs-built_in">enable</span> ffm<br>systemctl start ffm<br></code></pre></td></tr></table></figure>
+
+<p>现在就可以通过服务来控制 FFM 了。</p>
+<h1 id="可选工作"><a href="#可选工作" class="headerlink" title="可选工作"></a>可选工作</h1><div class="note note-info">
+            <p><strong>&lt;2018.10.30 更新&gt;</strong></p><p>增加可选工作，提供 HTTP 基本认证、HTTPS 及 Nginx 配置部分内容。</p>
+          </div>
+
+<h2 id="HTTP-基本认证"><a href="#HTTP-基本认证" class="headerlink" title="HTTP 基本认证"></a>HTTP 基本认证</h2><p>HTTP 基本认证由 <a target="_blank" rel="noopener" href="https://github.com/http-auth/http-auth">http-auth</a> 实现，这里只使用最简单的方法。</p>
+<p>生成密码文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">htpasswd -c -s /root/FCM-for-Mojo-Server/ffm_auth username<br></code></pre></td></tr></table></figure>
+
+<p>输入2次密码之后，文件就生成在 FFM 服务端目录。编辑 <code>config.js</code>，找到 <code>basic_auth</code> 那段去掉注释（<code>/*</code> 和 <code>*/</code>）并写上密码文件的路径：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-string">&quot;basic_auth&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;file&quot;</span>: <span class="hljs-string">&quot;/root/FCM-for-Mojo-Server/ffm_auth&quot;</span><br>&#125;,<br></code></pre></td></tr></table></figure>
+
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>HTTPS 通过 <a target="_blank" rel="noopener" href="https://nodejs.org/dist/latest/docs/api/https.html">https 模块</a> 实现，这里只使用最简单的方法。</p>
+<p>编辑 <code>config.js</code>，找到有 <code>https</code> 那段去掉附近的注释（<code>/*</code> 和 <code>*/</code>）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-string">&quot;https&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;key&quot;</span>: fs.<span class="hljs-title function_">readFileSync</span>(<span class="hljs-string">&quot;/etc/nginx/ssl/neko7ina.com.key&quot;</span>),<br>    <span class="hljs-string">&quot;ca&quot;</span>: fs.<span class="hljs-title function_">readFileSync</span>(<span class="hljs-string">&quot;/etc/nginx/ssl/ca.cer&quot;</span>),<br>    <span class="hljs-string">&quot;cert&quot;</span>: fs.<span class="hljs-title function_">readFileSync</span>(<span class="hljs-string">&quot;/etc/nginx/ssl/fullchain.cer&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>证书可以使用 <a target="_blank" rel="noopener" href="https://acme.sh/">acme.sh</a> 很方便地进行申请，现在支持泛域名证书的申请，在稍后的 Nginx 的配置中可以分配一个单独的二级域名给 FFM 使用。</p>
+<h2 id="配置-Nginx"><a href="#配置-Nginx" class="headerlink" title="配置 Nginx"></a>配置 Nginx</h2><p>在 <code>/etc/nginx/conf.d</code> 中创建一个新的文件 <code>ffm.conf</code> 并写上如下配置：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;<br>    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;<br>    <span class="hljs-attribute">server_name</span> ffm.neko7ina.com;<br>    <span class="hljs-attribute">return</span> <span class="hljs-number">301</span> https://ffm.neko7ina.com<span class="hljs-variable">$request_uri</span>;<br>&#125;<br><span class="hljs-section">server</span> &#123;<br>    <span class="hljs-attribute">listen</span> <span class="hljs-number">443</span> ssl;<br>    <span class="hljs-attribute">root</span> /var/www/ffm;<br>    <span class="hljs-attribute">access_log</span>  /var/log/nginx/ffm_access.log;<br><br>    <span class="hljs-attribute">ssl_certificate</span> /etc/nginx/ssl/fullchain.cer;<br>    <span class="hljs-attribute">ssl_certificate_key</span> /etc/nginx/ssl/neko7ina.com.key;<br><br>    <span class="hljs-attribute">ssl_session_timeout</span> <span class="hljs-number">1d</span>;<br>    <span class="hljs-attribute">ssl_session_cache</span> shared:SSL:<span class="hljs-number">50m</span>;<br>    <span class="hljs-attribute">ssl_session_tickets</span> <span class="hljs-literal">off</span>;<br><br>    <span class="hljs-attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="hljs-number">1</span> TLSv1.<span class="hljs-number">2</span>;<br>    <span class="hljs-attribute">add_header</span> Strict-Transport-Security max-age=<span class="hljs-number">15768000</span>;<br>    <span class="hljs-attribute">ssl_stapling</span> <span class="hljs-literal">on</span>;<br>    <span class="hljs-attribute">ssl_stapling_verify</span> <span class="hljs-literal">on</span>;<br><br>    <span class="hljs-section">location</span> / &#123;<br>        <span class="hljs-attribute">proxy_pass</span> https://127.0.0.1:5005/;<br>        <span class="hljs-attribute">proxy_redirect</span> <span class="hljs-literal">off</span>;<br>        <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;<br>        <span class="hljs-attribute">proxy_set_header</span> X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;<br>        <span class="hljs-attribute">auth_basic</span> <span class="hljs-string">&quot;FCM for Mojo&quot;</span>;<br>        <span class="hljs-attribute">auth_basic_user_file</span> /root/FCM-for-Mojo-Server/ffm_auth;<br>       &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">nginx -t<br>nginx -s reload<br></code></pre></td></tr></table></figure>
+
+<p>最后修改一下客户端上的 <code>服务器配置</code>，将新的 URL 以及登录信息填写进去即可。</p>
+<p><img src="https://image.neko7ina.com/20180731/7.png" style="aspect-ratio: 810 / 1440;width:37%;max-width:810px" srcset="https://image.neko7ina.com/20180731/7_proc.jpg" lazyload loading="lazy" width="37%"></p>
+
+<h1 id="收尾工作"><a href="#收尾工作" class="headerlink" title="收尾工作"></a>收尾工作</h1><p>最后换一个简洁版本的 QQ，比如 <a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.tencent.mobileqqi&hl=zh">QQ 国际版</a>，并关掉其后台权限及通知权限。</p>
+<p>现在，在别的 IM 软件上能够享受的 Android 通知新特性，也可以在 QQ 上享受的到了。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%98%E8%85%BE/" class="category-chain-item">折腾</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8A%98%E8%85%BE/" class="print-no-link">#折腾</a>
+      
+        <a href="/tags/Android/" class="print-no-link">#Android</a>
+      
+        <a href="/tags/FFM/" class="print-no-link">#FFM</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/travel-in-japan.html" title="日本之行">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">日本之行</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/new-god-of-war.html" title="宝剑锋从磨砺出，梅花香自苦寒来——PS4《战神》游感">
+                        <span class="hidden-mobile">宝剑锋从磨砺出，梅花香自苦寒来——PS4《战神》游感</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://static.neko7ina.com/twikoo/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://twikoo.neko7ina.com/","region":"ap-shanghai","path":"window.location.pathname","prismCdn":"https://static.neko7ina.com/prism"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      苏ICP备19071122号-1
+    </a>
+  </span>
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+
+<script  src="https://static.neko7ina.com/jquery/jquery.min.js" ></script>
+<script  src="https://static.neko7ina.com/twitter-bootstrap/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://static.neko7ina.com/typed.js/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/tocbot/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://static.neko7ina.com/clipboard.js/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/anchor-js/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/fancybox/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

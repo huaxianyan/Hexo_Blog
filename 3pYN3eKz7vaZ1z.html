@@ -1,0 +1,723 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://image.neko7ina.com/base/favicon.png">
+  <link rel="icon" href="https://image.neko7ina.com/base/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="NeKo7inA">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="从这个用于自我满足的博客诞生之际，评论系统就在数个方案之间换来换去。 最终我找到了 Twikoo 并一直用到现在，是目前最适合我的评论方案。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自建 Twikoo 评论系统私有部署">
+<meta property="og:url" content="https://neko7ina.com/3pYN3eKz7vaZ1z.html">
+<meta property="og:site_name" content="七味茶盏">
+<meta property="og:description" content="从这个用于自我满足的博客诞生之际，评论系统就在数个方案之间换来换去。 最终我找到了 Twikoo 并一直用到现在，是目前最适合我的评论方案。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.neko7ina.com/20220731/index.jpg">
+<meta property="article:published_time" content="2022-07-31T07:25:57.000Z">
+<meta property="article:modified_time" content="2026-03-15T08:04:17.032Z">
+<meta property="article:author" content="NeKo7inA">
+<meta property="article:tag" content="折腾">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://image.neko7ina.com/20220731/index.jpg">
+  
+  
+  
+  <title>自建 Twikoo 评论系统私有部署 - 七味茶盏</title>
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/twitter-bootstrap/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/github-markdown-css/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/hint.css/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://static.neko7ina.com/fancybox/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="https://static.neko7ina.com/iconfont/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"neko7ina.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":77,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://image.neko7ina.com/base/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-XKLHJ9PV58"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-XKLHJ9PV58", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-XKLHJ9PV58');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 47vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>七味茶盏</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-clock-fill"></i>
+                <span>时间线</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/trophys/" target="_self">
+                <i class="iconfont2 icon-playstation-fill"></i>
+                <span>奖杯</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://image.neko7ina.com/base/index.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="自建 Twikoo 评论系统私有部署"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-31 15:25" pubdate>
+          2022 年 7 月 31 日 星期日 下午 3:25
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">自建 Twikoo 评论系统私有部署</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>从这个用于自我满足的博客诞生之际，评论系统就在数个方案之间换来换去。</p>
+<p>最终我找到了 <a target="_blank" rel="noopener" href="https://github.com/imaegoo/twikoo">Twikoo</a> 并一直用到现在，是目前最适合我的评论方案。</p>
+<span id="more"></span>
+
+<p>之前一直使用腾讯云开发 CloudBase 的基础版，因为博客没人看，套餐够用。</p>
+<p>但从今年 8 月 8 日起腾讯云开发就变更了 <a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/876/75213">资费模式</a>，没有办法再继续白嫖了。</p>
+<p>我手上呢，也有一台用于干乱七八糟的轻量云服务器，那么为何不自建来节省成本呢？</p>
+<p>刚好，Twikoo 的新 Release 支持私有部署了，今天就来把这个搞定。</p>
+<div class="note note-info">
+            <p><strong>2022.12.06 更新</strong>：评论图片处理。</p>
+          </div>
+
+<h1 id="先备份"><a href="#先备份" class="headerlink" title="先备份"></a>先备份</h1><p>虽然我知道我很急，但我先别急。</p>
+<p>因为评论系统最重要的还是内容本身，所以在更换之前我们要把已有内容备份，更换完毕后再导入回去。</p>
+<p>备份很简单，首先登录腾讯云控制台，进入 <code>云开发 CloudBase</code> 页面，进入 Twikoo 使用的环境。</p>
+<p>左侧选择 <code>数据库</code> 选项，然后在右侧列表中点击 <code>comment</code> 进入详情页，点击 <code>导出</code> 后，使用默认 <code>JSON</code> 格式导出，即可获得评论数据的备份文件。</p>
+<p><img src="https://image.neko7ina.com/20220731/1.png" style="aspect-ratio: 1087 / 978;width:90%;max-width:1087px" srcset="https://image.neko7ina.com/20220731/1_proc.jpg" lazyload loading="lazy"></p>
+<p><img src="https://image.neko7ina.com/20220731/2.png" style="aspect-ratio: 1292 / 898;width:90%;max-width:1292px" srcset="https://image.neko7ina.com/20220731/2_proc.jpg" lazyload loading="lazy"></p>
+<p><img src="https://image.neko7ina.com/20220731/3.png" style="aspect-ratio: 758 / 675;width:90%;max-width:758px" srcset="https://image.neko7ina.com/20220731/3_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">评论数据导出</font></i></center>
+
+</br>
+
+<p>除了 comment 外另外两项就不需要备份了，因为 Twikoo 的导入系统只支持评论数据备份文件。</p>
+<h1 id="私有部署"><a href="#私有部署" class="headerlink" title="私有部署"></a>私有部署</h1><p>Twikoo 的文档已经更新了关于 <a target="_blank" rel="noopener" href="https://twikoo.js.org/quick-start.html#%E7%A7%81%E6%9C%89%E9%83%A8%E7%BD%B2">私有部署</a> 部分的内容，个人选择了使用 Docker 进行部署。</p>
+<p>Docker 的安装这里不多赘述，完成 Docker 环境的搭建后，先拉取镜像。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker pull imaegoo/twikoo:latest<br></code></pre></td></tr></table></figure>
+
+<p>拉取完毕后使用以下命令即可启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run -p 8087:8080 -v /root/twikoo/data:/app/data -d --name=twikoo imaegoo/twikoo:latest<br></code></pre></td></tr></table></figure>
+
+<p>端口和数据存放路径可以按照个人喜好改动。</p>
+<p>这时候再去主题配置文件找到 Twikoo 相关配置项，将 <code>envId</code> 从之前的腾讯云开发 ID 换成 <code>http://yourip:port/</code> 本地调试应该就可以连上评论系统了。</p>
+<p>重新设置好管理密码，正常进入管理面板，找到 <code>导入</code> 选项卡，源系统选择 <code>Twikoo（JSON）</code>，再选择评论数据备份文件点击 <code>开始导入</code>，没什么意外评论内容就全部搬过来了。</p>
+<p><img src="https://image.neko7ina.com/20220731/4.png" style="aspect-ratio: 904 / 503;width:90%;max-width:904px" srcset="https://image.neko7ina.com/20220731/4_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">评论数据导出</font></i></center>
+
+</br>
+
+<p>但是这里只有评论内容，Twikoo 的设置不包含在内，所以我又对照着线上腾讯云开发的管理面板 Copy 了一遍，这才算完成整个评论系统的迁移。</p>
+<h1 id="配置-Nginx-反代"><a href="#配置-Nginx-反代" class="headerlink" title="配置 Nginx 反代"></a>配置 Nginx 反代</h1><p>现在基本都是 HTTPS 的时代，Twikoo 的默认服务不支持 HTTPS，所以还得用个反代来解决下这个问题。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim /etc/nginx/conf.d/twikoo.conf<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;<br>        <span class="hljs-attribute">listen</span> <span class="hljs-number">443</span> ssl;<br>        <span class="hljs-attribute">server_name</span> twikoo.neko7ina.com;<br><br>        <span class="hljs-attribute">ssl_certificate</span> /home/syncthing/ssl/cert.pem;<br>        <span class="hljs-attribute">ssl_certificate_key</span> /home/syncthing/ssl/key.pem;<br><br>        <span class="hljs-section">location</span> / &#123;<br>                <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;<br>                <span class="hljs-attribute">proxy_redirect</span> <span class="hljs-literal">off</span>;<br>                <span class="hljs-attribute">proxy_set_header</span> X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>                <span class="hljs-attribute">proxy_set_header</span> X-Scheme <span class="hljs-variable">$scheme</span>;<br>                <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;<br>                <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-Proto <span class="hljs-variable">$scheme</span>;<br>                <span class="hljs-attribute">proxy_pass</span> http://127.0.0.1:8087;<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">nginx -t<br>nginx -s reload<br></code></pre></td></tr></table></figure>
+
+<p>需要注意的是如果碰到跨域问题，需要额外的配置来解决。</p>
+<p>因为个人的博客是放在腾讯云静态存储且套了 CDN，我直接在 CDN 上设置了 <code>HTTP 响应头配置</code>，所以这里 Nginx 就没有再写相应的配置也能正常工作。</p>
+<p><img src="https://image.neko7ina.com/20220731/5.png" style="aspect-ratio: 1228 / 437;width:90%;max-width:1228px" srcset="https://image.neko7ina.com/20220731/5_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">HTTP 响应头配置</font></i></center>
+
+</br>
+
+<p>最后别忘记了在主题配置文件里把 <code>envId</code> 改成新的地址，就像这样：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">twikoo:</span><br>  <span class="hljs-attr">envId:</span> <span class="hljs-string">https://twikoo.neko7ina.com/</span><br>  <span class="hljs-attr">region:</span> <span class="hljs-string">ap-shanghai</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">window.location.pathname</span><br>  <span class="hljs-attr">prismCdn:</span> <span class="hljs-string">https://cdn.staticfile.org/prism/1.28.0</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="评论图片处理"><a href="#评论图片处理" class="headerlink" title="评论图片处理"></a>评论图片处理</h1><div class="note note-info">
+            <p><strong>&lt;2022.12.06 更新&gt;</strong></p><p>评论图片处理。</p>
+          </div>
+
+<p>当时还部署在云开发时，图片上传会上传到云开发的空间中。</p>
+<p>本来打算找个时间把图片都下到本地重新编辑链接，但是拖延症发作一拖再拖，到今天想干的时候发现图片全没了……</p>
+<p>不过处理还是要处理的，否则每次载入都会请求一个不存在的资源还是不太优雅。</p>
+<p>找到 Twikoo 映射的数据文件夹，其中 <code>db.json.0</code> 存放了所有评论数据，将其下到本地打开。</p>
+<p>以 <code>tk-img</code> 为搜索关键字找到所有上传图片的 URL，然后全部指向了一张 404 图片。</p>
+<p><img src="https://image.neko7ina.com/base/404_image.jpg" style="aspect-ratio: 577 / 325;width:90%;max-width:577px" srcset="https://image.neko7ina.com/base/404_image_proc.jpg" lazyload loading="lazy"></p>
+<center><i><font color="#6c757d">今天请同事设计的</font></i></center>
+
+</br>
+
+<p>当然，如果你有保留之前评论中的图片，只需要重新做出链接然后替换进去，就可以无缝迁移了。</p>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>感谢开发者的辛苦努力，当初这个评论系统始于腾讯云开发，但在我这将终于自建。</p>
+<p>另外自建了之后评论系统响应快了不止一点两点，真好！</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%98%E8%85%BE/" class="category-chain-item">折腾</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8A%98%E8%85%BE/" class="print-no-link">#折腾</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/3pYN3eKzESfkFS.html" title="漂流流水账">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">漂流流水账</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/3pYN3eKz1P3PPn.html" title="终于完成了，FF14 奖杯！">
+                        <span class="hidden-mobile">终于完成了，FF14 奖杯！</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://static.neko7ina.com/twikoo/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://twikoo.neko7ina.com/","region":"ap-shanghai","path":"window.location.pathname","prismCdn":"https://static.neko7ina.com/prism"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      苏ICP备19071122号-1
+    </a>
+  </span>
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+
+<script  src="https://static.neko7ina.com/jquery/jquery.min.js" ></script>
+<script  src="https://static.neko7ina.com/twitter-bootstrap/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://static.neko7ina.com/typed.js/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/tocbot/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://static.neko7ina.com/clipboard.js/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/anchor-js/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://static.neko7ina.com/fancybox/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
