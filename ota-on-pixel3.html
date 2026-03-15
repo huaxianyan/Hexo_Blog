@@ -22,13 +22,13 @@
     <meta name="description" content="我对手机的使用要求和方式有我自己的一套准则，新手机拿到手上 Magisk 是必然，所以也就和 OTA 没见过面。 我一度以为我和 OTA 绝缘（还原 boot.img 的方法也试过），永远都享受不到 A&#x2F;B 分区的特性，直到在东京旅行中的一次随意之举，实现了这个心愿。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="终于在 Pixel 3 上享受了一次 A&#x2F;B 更新">
-<meta property="og:url" content="https://neko7ina.com/ota-on-pixel3.html">
+<meta property="og:url" content="https://huaxianyan.github.io/Hexo_Blog/ota-on-pixel3.html">
 <meta property="og:site_name" content="七味茶盏">
 <meta property="og:description" content="我对手机的使用要求和方式有我自己的一套准则，新手机拿到手上 Magisk 是必然，所以也就和 OTA 没见过面。 我一度以为我和 OTA 绝缘（还原 boot.img 的方法也试过），永远都享受不到 A&#x2F;B 分区的特性，直到在东京旅行中的一次随意之举，实现了这个心愿。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://image.neko7ina.com/20191130/index.jpg">
 <meta property="article:published_time" content="2019-11-30T03:42:47.000Z">
-<meta property="article:modified_time" content="2026-03-15T08:04:17.032Z">
+<meta property="article:modified_time" content="2026-03-15T08:18:43.601Z">
 <meta property="article:author" content="NeKo7inA">
 <meta property="article:tag" content="折腾">
 <meta property="article:tag" content="Android">
@@ -61,33 +61,33 @@
 <link rel="stylesheet" href="https://static.neko7ina.com/iconfont/font_1736178_k526ubmyhba.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/Hexo_Blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/Hexo_Blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo_Blog/css/highlight-dark.css" />
   
 
 
 
   
-<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/Hexo_Blog/css/custom.css">
 
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"neko7ina.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":77,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://image.neko7ina.com/base/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-XKLHJ9PV58"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"huaxianyan.github.io","root":"/Hexo_Blog/","version":"1.9.8","typing":{"enable":true,"typeSpeed":77,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://image.neko7ina.com/base/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-XKLHJ9PV58"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/Hexo_Blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/Hexo_Blog/js/utils.js" ></script>
+  <script  src="/Hexo_Blog/js/color-schema.js" ></script>
   
 
   
@@ -129,7 +129,7 @@
 <div class="header-inner" style="height: 47vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/Hexo_Blog/">
       <strong>七味茶盏</strong>
     </a>
 
@@ -148,7 +148,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/Hexo_Blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -160,7 +160,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/Hexo_Blog/archives/" target="_self">
                 <i class="iconfont icon-clock-fill"></i>
                 <span>时间线</span>
               </a>
@@ -172,7 +172,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/trophys/" target="_self">
+              <a class="nav-link" href="/Hexo_Blog/trophys/" target="_self">
                 <i class="iconfont2 icon-playstation-fill"></i>
                 <span>奖杯</span>
               </a>
@@ -184,7 +184,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/Hexo_Blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -333,7 +333,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%8A%98%E8%85%BE/" class="category-chain-item">折腾</a>
+  <a href="/Hexo_Blog/categories/%E6%8A%98%E8%85%BE/" class="category-chain-item">折腾</a>
   
   
 
@@ -348,9 +348,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%8A%98%E8%85%BE/" class="print-no-link">#折腾</a>
+        <a href="/Hexo_Blog/tags/%E6%8A%98%E8%85%BE/" class="print-no-link">#折腾</a>
       
-        <a href="/tags/Android/" class="print-no-link">#Android</a>
+        <a href="/Hexo_Blog/tags/Android/" class="print-no-link">#Android</a>
       
     </div>
   
@@ -364,7 +364,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/travel-in-tokyo-again.html" title="呼朋唤友六七人，再游东京八九天">
+                      <a href="/Hexo_Blog/travel-in-tokyo-again.html" title="呼朋唤友六七人，再游东京八九天">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">呼朋唤友六七人，再游东京八九天</span>
                         <span class="visible-mobile">上一篇</span>
@@ -374,7 +374,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/easy-local-GBF-translation-data.html" title="GBF 翻译本地数据一键包">
+                      <a href="/Hexo_Blog/easy-local-GBF-translation-data.html" title="GBF 翻译本地数据一键包">
                         <span class="hidden-mobile">GBF 翻译本地数据一键包</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -536,8 +536,8 @@
 
 <script  src="https://static.neko7ina.com/jquery/jquery.min.js" ></script>
 <script  src="https://static.neko7ina.com/twitter-bootstrap/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/Hexo_Blog/js/events.js" ></script>
+<script  src="/Hexo_Blog/js/plugins.js" ></script>
 
 
   <script  src="https://static.neko7ina.com/typed.js/typed.min.js" ></script>
@@ -560,7 +560,7 @@
 
   
     
-      <script  src="/js/img-lazyload.js" ></script>
+      <script  src="/Hexo_Blog/js/img-lazyload.js" ></script>
     
   
 
@@ -660,7 +660,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/Hexo_Blog/js/local-search.js" ></script>
 
 
 
@@ -668,7 +668,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/Hexo_Blog/js/boot.js" ></script>
 
 
   
